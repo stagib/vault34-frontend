@@ -6,4 +6,7 @@
 </script>
 
 <Navbar user={data.user} />
-{@render children()}
+
+<div class="mx-4 py-12">
+	{@render children()}
+</div>

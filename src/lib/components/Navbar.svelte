@@ -12,7 +12,7 @@
 	</div>
 
 	{#if user}
-		<a class="px-4 py-1 text-sm hover:bg-neutral-800" href={`/users/${user.username}`}>Profile</a>
+		<a class="px-4 py-1 text-sm hover:bg-neutral-800" href={`/user/${user.username}`}>Profile</a>
 	{:else}
 		<a class="px-4 py-1 text-sm hover:bg-neutral-800" href="/login">Login</a>
 	{/if}

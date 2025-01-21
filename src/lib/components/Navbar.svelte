@@ -4,7 +4,7 @@
 	let { user } = $props();
 </script>
 
-<div class="fixed mt-1 flex w-full items-center justify-between bg-zinc-900">
+<div class="fixed flex w-full items-center justify-between bg-zinc-900 py-1">
 	<div class="flex text-sm">
 		<a class="px-4 py-1 hover:bg-neutral-800" href="/">Vault34</a>
 		<a class="px-4 py-1 hover:bg-neutral-800" href="/">Create</a>

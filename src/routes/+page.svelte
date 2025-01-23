@@ -45,7 +45,7 @@
 </script>
 
 <Masonry items={posts} gap={14} let:item>
-	<a href={`/posts/${item.id}`}>
+	<a href={`/post/${item.id}`}>
 		<img src={item.thumbnail} alt="" />
 	</a>
 </Masonry>

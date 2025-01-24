@@ -44,11 +44,13 @@
 	});
 </script>
 
-<Masonry items={posts} gap={14} let:item={post}>
-	<a href={`/post/${post.id}`}>
-		<img src={post.thumbnail} alt="" />
-	</a>
-</Masonry>
+<div class="mx-4">
+	<Masonry items={posts} gap={14} let:item={post}>
+		<a href={`/post/${post.id}`}>
+			<img src={post.thumbnail} alt="" />
+		</a>
+	</Masonry>
+</div>
 
 {#if hasNext}
 	<div bind:this={target}></div>

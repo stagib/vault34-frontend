@@ -4,10 +4,10 @@
 
 	let { postId } = $props();
 
+	let page = 1;
+	let loading = false;
 	let comments = $state([]);
-	let page = $state(1);
 	let hasNext = $state(true);
-	let loading = $state(false);
 	let target = $state(null);
 
 	async function fetchComments(postId) {
@@ -30,12 +30,13 @@
 	}
 
 	$effect(() => {
-		if (postId) {
-			fetchComments(postId);
-		}
+		page = 1;
+		hasNext = true;
+		comments = [];
+		fetchComments(postId);
 	});
 
-	$effect(() => {
+	onMount(() => {
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (entry.isIntersecting) {

@@ -27,7 +27,6 @@
 			throw error;
 		}
 		loading = false;
-		console.log(comments);
 	}
 
 	$effect(() => {

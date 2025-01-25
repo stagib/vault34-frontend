@@ -1,5 +1,6 @@
 <script>
 	import CommentFetcher from '$lib/components/CommentFetcher.svelte';
+	import CommentInput from '$lib/components/CommentInput.svelte';
 	import PostFetcher from '$lib/components/PostFetcher.svelte';
 	import { API_URL } from '$lib/config.js';
 	import { onMount } from 'svelte';
@@ -51,9 +52,15 @@
 		{/each}
 	</div>
 
-	<div class="flex w-full max-w-xs flex-col bg-zinc-800 p-2 px-4">
-		<div class="mb-4 text-base font-semibold">Comments</div>
-		<CommentFetcher postId={post.id} />
+	<div class="relative flex w-full max-w-xs flex-col bg-zinc-800">
+		<div class="p-2 px-4">
+			<div class="mb-4 text-base font-semibold">Comments</div>
+			<CommentFetcher postId={post.id} />
+		</div>
+
+		<div class="absolute bottom-0 w-full">
+			<CommentInput postId={post.id} />
+		</div>
 	</div>
 </div>
 

@@ -3,6 +3,7 @@
 	import CommentInput from '$lib/components/CommentInput.svelte';
 	import PostFetcher from '$lib/components/PostFetcher.svelte';
 	import PostReaction from '$lib/components/PostReaction.svelte';
+	import Tag from '$lib/components/Tag.svelte';
 	import { API_URL } from '$lib/config.js';
 	import { onMount } from 'svelte';
 
@@ -13,9 +14,7 @@
 </script>
 
 <div class="flex h-screen pb-16">
-	<div
-		class="flex w-full max-w-64 flex-col border border-x-0 border-zinc-600 bg-zinc-800 py-2 pr-12"
-	>
+	<div class="flex w-full max-w-72 flex-col border border-x-0 border-zinc-600 bg-zinc-800 py-2">
 		<div class="flex flex-col text-sm">
 			<div class="mb-4 flex flex-col gap-1 px-4">
 				<div class="text-base font-semibold">{post.title}</div>
@@ -30,12 +29,10 @@
 			</div>
 
 			{#each Object.keys(tags) as type}
-				<div class="mb-4 flex flex-col px-4">
+				<div class="mb-4 flex flex-wrap items-center gap-2 px-4">
 					<div class="mb-1 font-semibold">{type}:</div>
 					{#each tags[type] as tag}
-						<div class="flex gap-2">
-							<div>{tag.name}</div>
-						</div>
+						<Tag {tag} />
 					{/each}
 				</div>
 			{/each}

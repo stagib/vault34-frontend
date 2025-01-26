@@ -57,16 +57,7 @@
 	<div
 		class="relative flex w-full max-w-xs flex-col overflow-hidden border border-r-0 border-zinc-600 bg-zinc-800"
 	>
-		<div
-			class="absolute top-0 w-full border-b border-zinc-600 bg-zinc-800 px-4 py-2 text-base font-semibold"
-		>
-			Comments
-		</div>
-		<div class="overflow-auto p-2 px-4">
-			<div class="mt-10 overflow-auto">
-				<CommentFetcher postId={post.id} />
-			</div>
-		</div>
+		<CommentFetcher postId={post.id} />
 
 		<div class="absolute bottom-0 w-full bg-zinc-800 pt-4">
 			<CommentInput postId={post.id} />

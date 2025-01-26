@@ -1,12 +1,14 @@
 <script>
 	import { API_URL } from '$lib/config';
 	import { onMount } from 'svelte';
+	import Comment from './Comment.svelte';
 
 	let { postId } = $props();
 
 	let page = 1;
 	let loading = false;
 	let comments = $state([]);
+	let totalComments = $state(0);
 	let hasNext = $state(true);
 	let target = $state(null);
 
@@ -15,11 +17,14 @@
 		loading = true;
 
 		try {
-			const response = await fetch(`${API_URL}/posts/${postId}/comments?page=${page}`);
+			const response = await fetch(`${API_URL}/posts/${postId}/comments?page=${page}`, {
+				credentials: 'include'
+			});
 			const data = await response.json();
 
 			if (response.ok) {
 				comments = [...comments, ...data.items];
+				totalComments = data.total;
 				hasNext = data.page < data.pages;
 				page = page + 1;
 			}
@@ -51,15 +56,18 @@
 	});
 </script>
 
-{#each comments as comment}
-	<div class="mb-4 text-sm">
-		<div class="flex gap-2">
-			<div class="font-semibold">{comment.user.username}</div>
-			<div class="text-zinc-300">{comment.time_since}</div>
-		</div>
-		<div class="break-words text-sm">{comment.content}</div>
+<div class="absolute top-0 w-full">
+	<div class="flex items-center gap-2 border-b border-zinc-600 bg-zinc-800 px-4 py-2">
+		<div class="text-base font-semibold">Comments</div>
+		<div class="text-base text-zinc-300">{totalComments}</div>
 	</div>
-{/each}
+</div>
+
+<div class="my-12 overflow-auto p-2 px-3">
+	{#each comments as comment}
+		<Comment {comment} {postId} />
+	{/each}
+</div>
 
 {#if hasNext}
 	<div bind:this={target}></div>

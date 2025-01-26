@@ -13,9 +13,9 @@
 	let tags = $derived(data.tags);
 </script>
 
-<div class="flex h-screen pb-16">
-	<div class="flex w-full max-w-72 flex-col border border-x-0 border-zinc-600 bg-zinc-800 py-2">
-		<div class="flex flex-col text-sm">
+<div class="flex h-screen pb-20">
+	<div class="flex w-full max-w-72 flex-col border border-x-0 border-zinc-600 bg-zinc-800">
+		<div class="border-b border-zinc-600 py-2 pb-4">
 			<div class="mb-4 flex flex-col gap-1 px-4">
 				<div class="text-base font-semibold">{post.title}</div>
 				<div class="flex items-center gap-2">
@@ -24,13 +24,15 @@
 				</div>
 			</div>
 
-			<div class="mb-8 flex flex-col px-3">
+			<div class="flex flex-col px-3">
 				<PostReaction {post} />
 			</div>
+		</div>
 
+		<div class="mt-6">
 			{#each Object.keys(tags) as type}
 				<div class="mb-4 flex flex-wrap items-center gap-2 px-4">
-					<div class="mb-1 font-semibold">{type}:</div>
+					<div class="mb-1 text-sm font-semibold">{type}:</div>
 					{#each tags[type] as tag}
 						<Tag {tag} />
 					{/each}

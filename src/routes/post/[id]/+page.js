@@ -3,19 +3,16 @@ import { API_URL } from '$lib/config';
 export async function load({ params, fetch }) {
 	const postId = params.id;
 	let post = null;
-	let files = null;
 	let tags = null;
 
 	try {
-		const [postData, fileData] = await Promise.all([
-			fetch(`${API_URL}/posts/${postId}`, {
-				credentials: 'include'
-			}).then((res) => res.json()),
-			fetch(`${API_URL}/posts/${postId}/files`).then((res) => res.json())
-		]);
+		const response = await fetch(`${API_URL}/posts/${postId}`, {
+			credentials: 'include'
+		});
 
-		post = postData;
-		files = fileData.items;
+		if (response.ok) {
+			post = await response.json();
+		}
 
 		tags = post.tags.reduce((acc, tag) => {
 			if (!acc[tag.type]) {
@@ -27,5 +24,5 @@ export async function load({ params, fetch }) {
 	} catch (error) {
 		throw error;
 	}
-	return { post, files, tags };
+	return { post, tags };
 }

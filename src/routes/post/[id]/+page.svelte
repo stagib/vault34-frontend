@@ -1,6 +1,7 @@
 <script>
 	import CommentFetcher from '$lib/components/CommentFetcher.svelte';
 	import CommentInput from '$lib/components/CommentInput.svelte';
+	import FileFetcher from '$lib/components/FileFetcher.svelte';
 	import PostFetcher from '$lib/components/PostFetcher.svelte';
 	import PostReaction from '$lib/components/PostReaction.svelte';
 	import Tag from '$lib/components/Tag.svelte';
@@ -41,11 +42,7 @@
 		</div>
 	</div>
 
-	<div class="max-h-screen flex-1 overflow-hidden">
-		{#each files as file}
-			<img class="h-full" src={file.url} alt="" />
-		{/each}
-	</div>
+	<FileFetcher postId={post.id} />
 
 	<div
 		class="relative flex w-full max-w-xs flex-col overflow-hidden border border-r-0 border-zinc-600 bg-zinc-800"

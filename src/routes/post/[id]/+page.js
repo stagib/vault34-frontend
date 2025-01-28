@@ -4,7 +4,6 @@ export async function load({ params, fetch }) {
 	const postId = params.id;
 	let post = null;
 	let tags = null;
-
 	try {
 		const response = await fetch(`${API_URL}/posts/${postId}`, {
 			credentials: 'include'
@@ -14,13 +13,15 @@ export async function load({ params, fetch }) {
 			post = await response.json();
 		}
 
-		tags = post.tags.reduce((acc, tag) => {
-			if (!acc[tag.type]) {
-				acc[tag.type] = [];
-			}
-			acc[tag.type].push(tag);
-			return acc;
-		}, {});
+		if (post.tags) {
+			tags = post.tags.reduce((acc, tag) => {
+				if (!acc[tag.type]) {
+					acc[tag.type] = [];
+				}
+				acc[tag.type].push(tag);
+				return acc;
+			}, {});
+		}
 	} catch (error) {
 		throw error;
 	}

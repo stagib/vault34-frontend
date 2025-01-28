@@ -38,14 +38,16 @@
 		</div>
 
 		<div class="mt-6">
-			{#each Object.keys(tags) as type}
-				<div class="mb-4 flex flex-wrap items-center gap-2 px-4">
-					<div class="mb-1 text-sm font-semibold">{type}:</div>
-					{#each tags[type] as tag}
-						<Tag {tag} />
-					{/each}
-				</div>
-			{/each}
+			{#if tags.length > 0}
+				{#each Object.keys(tags) as type}
+					<div class="mb-4 flex flex-wrap items-center gap-2 px-4">
+						<div class="mb-1 text-sm font-semibold">{type}:</div>
+						{#each tags[type] as tag}
+							<Tag {tag} />
+						{/each}
+					</div>
+				{/each}
+			{/if}
 		</div>
 	</div>
 

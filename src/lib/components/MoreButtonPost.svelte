@@ -1,5 +1,9 @@
 <script>
 	import DropdownMenu from './DropdownMenu.svelte';
+	import ReportModal from './ReportModal.svelte';
+
+	let { postId } = $props();
+	let reportModal = $state(null);
 </script>
 
 <DropdownMenu>
@@ -13,12 +17,18 @@
 		<div class="absolute left-full top-0 z-20">
 			<div class="flex w-32 flex-col rounded-md border border-zinc-600 bg-zinc-700 p-1">
 				<button class="rounded-md px-2 py-1 text-start text-sm hover:bg-zinc-600">Edit</button>
-				<button class="rounded-md px-2 py-1 text-start text-sm hover:bg-zinc-600">Report</button>
+				<button
+					class="rounded-md px-2 py-1 text-start text-sm hover:bg-zinc-600"
+					onclick={reportModal.openModal}
+					>Report
+				</button>
 				<button class="rounded-md px-2 py-1 text-start text-sm hover:bg-zinc-600">Delete</button>
 			</div>
 		</div>
 	{/snippet}
 </DropdownMenu>
+
+<ReportModal bind:this={reportModal} targetId={postId} targetType={'post'} />
 
 <style>
 	.material-symbols--more-vert {

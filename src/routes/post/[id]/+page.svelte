@@ -33,7 +33,7 @@
 			</div>
 
 			<div class="ml-auto pr-3">
-				<MoreButtonPost />
+				<MoreButtonPost postId={post.id} />
 			</div>
 		</div>
 

@@ -2,7 +2,7 @@
 	import DropdownMenu from './DropdownMenu.svelte';
 	import ReportModal from './ReportModal.svelte';
 
-	let { postId } = $props();
+	let { postId, user = null } = $props();
 	let reportModal = $state(null);
 </script>
 
@@ -15,14 +15,33 @@
 
 	{#snippet content()}
 		<div class="absolute left-full top-0 z-20">
-			<div class="flex w-32 flex-col rounded-md border border-zinc-600 bg-zinc-700 p-1">
-				<button class="rounded-md px-2 py-1 text-start text-sm hover:bg-zinc-600">Edit</button>
-				<button
-					class="rounded-md px-2 py-1 text-start text-sm hover:bg-zinc-600"
-					onclick={reportModal.openModal}
-					>Report
-				</button>
-				<button class="rounded-md px-2 py-1 text-start text-sm hover:bg-zinc-600">Delete</button>
+			<div class="flex w-32 flex-col rounded-sm border border-zinc-600 bg-zinc-700 p-1">
+				{#if user}
+					<button class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600">Edit</button>
+					<button
+						class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600"
+						onclick={reportModal.openModal}
+						>Report
+					</button>
+					<button class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600">Delete</button>
+				{:else}
+					<div class="inline-block: group relative">
+						<div class="w-full cursor-default rounded-sm px-2 py-1 text-start text-sm">Edit</div>
+						<div class="absolute left-full top-0 hidden group-hover:block">
+							<div class=" text-nowrap rounded-sm bg-zinc-600 px-2 py-1 text-sm">
+								Login required
+							</div>
+						</div>
+					</div>
+					<div class="inline-block: group relative">
+						<div class="w-full cursor-default rounded-sm px-2 py-1 text-start text-sm">Report</div>
+						<div class="absolute left-full top-0 hidden group-hover:block">
+							<div class=" text-nowrap rounded-sm bg-zinc-600 px-2 py-1 text-sm">
+								Login required
+							</div>
+						</div>
+					</div>
+				{/if}
 			</div>
 		</div>
 	{/snippet}

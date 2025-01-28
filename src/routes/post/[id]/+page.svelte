@@ -10,8 +10,8 @@
 	import { onMount } from 'svelte';
 
 	let { data } = $props();
+	let user = $derived(data.user);
 	let post = $derived(data.post);
-	let files = $derived(data.files);
 	let tags = $derived(data.tags);
 </script>
 
@@ -33,7 +33,7 @@
 			</div>
 
 			<div class="ml-auto pr-3">
-				<MoreButtonPost postId={post.id} />
+				<MoreButtonPost postId={post.id} {user} />
 			</div>
 		</div>
 

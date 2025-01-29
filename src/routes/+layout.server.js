@@ -1,5 +1,3 @@
 export async function load({ locals }) {
-	return {
-		user: locals.user || null
-	};
+	return { user: locals.user || null };
 }

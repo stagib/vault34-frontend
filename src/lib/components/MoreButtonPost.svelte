@@ -1,9 +1,11 @@
 <script>
 	import DropdownMenu from './DropdownMenu.svelte';
+	import EditModal from './EditModal.svelte';
 	import ReportModal from './ReportModal.svelte';
 
-	let { postId, user = null } = $props();
+	let { post, user = null } = $props();
 	let reportModal = $state(null);
+	let editModal = $state(null);
 </script>
 
 <DropdownMenu>
@@ -17,12 +19,14 @@
 		<div class="absolute left-full top-0 z-20">
 			<div class="flex w-32 flex-col rounded-sm border border-zinc-600 bg-zinc-700 p-1">
 				{#if user}
-					<button class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600">Edit</button>
 					<button
 						class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600"
-						onclick={reportModal.openModal}
-						>Report
-					</button>
+						onclick={editModal.openModal}>Edit</button
+					>
+					<button
+						class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600"
+						onclick={reportModal.openModal}>Report</button
+					>
 					<button class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600">Delete</button>
 				{:else}
 					<div class="inline-block: group relative">
@@ -47,7 +51,8 @@
 	{/snippet}
 </DropdownMenu>
 
-<ReportModal bind:this={reportModal} targetId={postId} targetType={'post'} />
+<ReportModal bind:this={reportModal} targetId={post.id} targetType={'post'} />
+<EditModal bind:this={editModal} {post} />
 
 <style>
 	.material-symbols--more-vert {

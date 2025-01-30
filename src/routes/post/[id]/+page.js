@@ -1,4 +1,5 @@
 import { API_URL } from '$lib/config';
+import { groupTags } from '$lib/utils.js';
 
 export async function load({ params, fetch }) {
 	const postId = params.id;
@@ -14,13 +15,7 @@ export async function load({ params, fetch }) {
 		}
 
 		if (post.tags) {
-			tags = post.tags.reduce((acc, tag) => {
-				if (!acc[tag.type]) {
-					acc[tag.type] = [];
-				}
-				acc[tag.type].push(tag);
-				return acc;
-			}, {});
+			tags = groupTags(post.tags);
 		}
 	} catch (error) {
 		throw error;

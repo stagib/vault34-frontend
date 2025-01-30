@@ -36,3 +36,17 @@ export async function verifyToken(authToken) {
 		return null;
 	}
 }
+
+export function groupTags(tags) {
+	const groupedTags = tags.reduce((acc, tag) => {
+		return {
+			...acc,
+			[tag.type]: [...(acc[tag.type] || []), tag]
+		};
+	}, {});
+	return groupedTags;
+}
+
+export function ungroupTags(tags) {
+	return Object.values(tags).flat();
+}

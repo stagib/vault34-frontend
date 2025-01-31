@@ -13,9 +13,10 @@ export async function load({ params, fetch }) {
 		if (response.ok) {
 			post = await response.json();
 		}
-
-		if (post.tags) {
-			tags = groupTags(post.tags);
+		if (post) {
+			if (post.tags) {
+				tags = groupTags(post.tags);
+			}
 		}
 	} catch (error) {
 		throw error;

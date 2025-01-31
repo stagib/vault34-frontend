@@ -1,4 +1,5 @@
 <script>
+	import DeleteModal from './DeleteModal.svelte';
 	import DropdownMenu from './DropdownMenu.svelte';
 	import EditModal from './EditModal.svelte';
 	import ReportModal from './ReportModal.svelte';
@@ -6,6 +7,7 @@
 	let { post, user = null } = $props();
 	let reportModal = $state(null);
 	let editModal = $state(null);
+	let deleteModal = $state(null);
 </script>
 
 <DropdownMenu>
@@ -27,7 +29,10 @@
 						class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600"
 						onclick={reportModal.openModal}>Report</button
 					>
-					<button class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600">Delete</button>
+					<button
+						class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600"
+						onclick={deleteModal.openModal}>Delete</button
+					>
 				{:else}
 					<div class="inline-block: group relative">
 						<div class="w-full cursor-default rounded-sm px-2 py-1 text-start text-sm">Edit</div>
@@ -53,6 +58,7 @@
 
 <ReportModal bind:this={reportModal} targetId={post.id} targetType={'post'} />
 <EditModal bind:this={editModal} {post} />
+<DeleteModal bind:this={deleteModal} postId={post.id} />
 
 <style>
 	.material-symbols--more-vert {

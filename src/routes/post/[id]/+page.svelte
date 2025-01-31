@@ -13,6 +13,8 @@
 	let user = $derived(data.user);
 	let post = $derived(data.post);
 	let tags = $derived(data.tags);
+
+	const tagTypes = ['parody', 'character', 'artist', 'general'];
 </script>
 
 <div class="flex h-screen pb-20">
@@ -38,15 +40,17 @@
 		</div>
 
 		<div class="mt-6">
-			{#each Object.keys(tags) as type}
-				<div class="mb-4 flex flex-wrap items-center gap-2 px-4">
-					<div class="mb-1 text-sm font-semibold">{type}:</div>
-					{#each tags[type] as tag}
-						<a href="/">
-							<Tag {tag} />
-						</a>
-					{/each}
-				</div>
+			{#each tagTypes as type}
+				{#if tags[type]}
+					<div class="mb-4 flex flex-wrap items-center gap-2 px-4">
+						<div class="mb-1 text-sm font-semibold">{type}:</div>
+						{#each tags[type] as tag}
+							<a href="/">
+								<Tag {tag} />
+							</a>
+						{/each}
+					</div>
+				{/if}
 			{/each}
 		</div>
 	</div>

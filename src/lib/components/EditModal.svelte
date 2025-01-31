@@ -62,7 +62,7 @@
 	{#snippet content()}
 		<div class="flex h-full w-full items-center justify-center bg-zinc-950 bg-opacity-75">
 			<div
-				class="w-full max-w-sm border border-zinc-600 bg-zinc-800 py-4"
+				class="max-h-screen w-full max-w-sm overflow-auto border border-zinc-600 bg-zinc-800 py-4"
 				use:clickOutside={modal.closeModal}
 			>
 				<div class="mb-4 border border-x-0 border-t-0 border-zinc-600 px-4 pb-4 font-semibold">

@@ -3,6 +3,7 @@
 	import { API_URL } from '$lib/config';
 	import { clickOutside, groupTags, ungroupTags } from '$lib/utils';
 	import Modal from './Modal.svelte';
+	import TagInput from './TagInput.svelte';
 	import TagRemove from './TagRemove.svelte';
 
 	let { post } = $props();
@@ -20,6 +21,17 @@
 		tags[tag.type] = tags[tag.type].filter((t) => t !== tag);
 	}
 
+	function addTag(tag) {
+		if (!tags[tag.type]) {
+			tags[tag.type] = [];
+		}
+
+		const exist = tags[tag.type].some((t) => t.name === tag.name);
+		if (!exist) {
+			tags[tag.type] = [...tags[tag.type], tag];
+		}
+	}
+
 	async function save() {
 		const tagData = ungroupTags($state.snapshot(tags));
 
@@ -32,6 +44,7 @@
 			});
 
 			if (response.ok) {
+				modal.closeModal();
 				window.location.reload();
 			}
 		} catch (error) {
@@ -65,20 +78,15 @@
 					/>
 				</div>
 
-				<div
-					class="mb-4 mt-12 border border-x-0 border-t-0 border-zinc-600 px-4 pb-4 font-semibold"
-				>
-					Tags
+				<div class="mb-4 mt-8 border border-x-0 border-t-0 border-zinc-600 px-4 py-4">
+					<div class="font-semibold">Tags</div>
 				</div>
 
 				<div class="mt-4 px-4">
 					{#each tagTypes as type}
 						<div class="mb-8">
-							<input
-								class="w-full bg-zinc-700 px-2 py-1 outline-none"
-								placeholder={`Add ${type}`}
-							/>
-							<div class="mt-2 flex flex-wrap items-center gap-2 px-4">
+							<TagInput {type} {addTag} />
+							<div class="mt-2 flex flex-wrap items-center gap-2 px-2">
 								<div class="mb-1 text-sm font-semibold">{type}:</div>
 								{#each tags[type] as tag}
 									<button onclick={() => removeTag(tag)}>

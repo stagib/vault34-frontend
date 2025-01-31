@@ -42,7 +42,9 @@
 				<div class="mb-4 flex flex-wrap items-center gap-2 px-4">
 					<div class="mb-1 text-sm font-semibold">{type}:</div>
 					{#each tags[type] as tag}
-						<Tag {tag} />
+						<a href="/">
+							<Tag {tag} />
+						</a>
 					{/each}
 				</div>
 			{/each}

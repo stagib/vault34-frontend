@@ -7,7 +7,6 @@
 	import PostReaction from '$lib/components/PostReaction.svelte';
 	import Tag from '$lib/components/Tag.svelte';
 	import { API_URL } from '$lib/config.js';
-	import { onMount } from 'svelte';
 
 	let { data } = $props();
 	let user = $derived(data.user);

@@ -7,7 +7,7 @@
 <div class="fixed z-10 flex w-full items-center justify-between bg-zinc-900 py-1">
 	<div class="flex text-sm">
 		<a class="px-4 py-1 hover:bg-neutral-800" href="/">Vault34</a>
-		<a class="px-4 py-1 hover:bg-neutral-800" href="/">Create</a>
+		<a class="px-4 py-1 hover:bg-neutral-800" href="/create">Create</a>
 		<input class="mx-4 w-80 bg-zinc-800 px-2 py-1 outline-none" placeholder="Search" />
 	</div>
 

@@ -7,6 +7,4 @@
 
 <Navbar user={data.user} />
 
-<div class="py-12">
-	{@render children()}
-</div>
+{@render children()}

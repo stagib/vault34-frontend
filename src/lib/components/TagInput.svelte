@@ -64,7 +64,7 @@
 
 <div class="relative">
 	<input
-		class="w-full bg-zinc-700 px-2 py-1 outline-none"
+		class="w-full bg-zinc-700 p-2 text-sm outline-none"
 		placeholder={`Add ${type}`}
 		oninput={handleInput}
 		onkeypress={handleKeyPress}

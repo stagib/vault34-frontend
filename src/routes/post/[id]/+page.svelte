@@ -17,8 +17,8 @@
 </script>
 
 {#if post}
-	<div class="flex h-screen pb-20">
-		<div class="flex w-full max-w-72 flex-col border border-x-0 border-zinc-600 bg-zinc-800">
+	<div class="mx-4 flex h-screen pb-10 pt-14">
+		<div class="flex w-full max-w-72 flex-col border border-zinc-600 bg-zinc-800">
 			<div class="flex border-b border-zinc-600 py-2 pb-4">
 				<div class="flex flex-col">
 					<div class="mb-4 flex flex-col gap-1 px-4">
@@ -58,7 +58,7 @@
 		<FileFetcher postId={post.id} />
 
 		<div
-			class="relative flex w-full max-w-xs flex-col overflow-hidden border border-r-0 border-zinc-600 bg-zinc-800"
+			class="relative flex w-full max-w-xs flex-col overflow-hidden border border-zinc-600 bg-zinc-800"
 		>
 			<CommentFetcher postId={post.id} />
 

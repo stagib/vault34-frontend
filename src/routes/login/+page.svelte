@@ -19,7 +19,7 @@
 	}
 </script>
 
-<div class="flex flex-col">
+<div class="flex flex-col px-4 pb-10 pt-14">
 	<div class="mb-4 text-sm font-semibold">Login</div>
 
 	<input

@@ -2,4 +2,6 @@
 	import PostFetcher from '$lib/components/PostFetcher.svelte';
 </script>
 
-<PostFetcher />
+<div class="pb-10 pt-14">
+	<PostFetcher />
+</div>

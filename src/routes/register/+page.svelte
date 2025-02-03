@@ -21,7 +21,7 @@
 		const username = usernameInput.getValue();
 		const password = passwordInput.getValue();
 
-		const response = await fetch(`${API_URL}/login`, {
+		const response = await fetch(`${API_URL}/users`, {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ username, password }),
@@ -39,14 +39,14 @@
 
 <div class="flex gap-4 px-4 pb-10 pt-14">
 	<div class="flex w-full max-w-xs flex-col border border-zinc-600 bg-zinc-800 p-4">
-		<div class="mb-8 text-sm font-semibold">Login</div>
-
+		<div class="mb-8 text-sm font-semibold">Register</div>
 		<TextInput
 			className={'mb-2 w-full bg-zinc-700 px-2 py-1 text-sm outline-none'}
 			placeholder={'Username'}
 			name={'Username'}
+			minLength={3}
+			maxLength={20}
 			allowNumbers={true}
-			allowSymbols={true}
 			required={true}
 			bind:this={usernameInput}
 		/>
@@ -55,6 +55,8 @@
 			className={'w-full bg-zinc-700 px-2 py-1 text-sm outline-none'}
 			placeholder={'Password'}
 			name={'Password'}
+			minLength={6}
+			maxLength={50}
 			allowNumbers={true}
 			allowSymbols={true}
 			required={true}
@@ -63,14 +65,14 @@
 
 		<div class="mt-2">
 			<button class="bg-zinc-700 px-2 py-1 text-sm hover:bg-zinc-600" onclick={login}
-				>Login
+				>Register
 			</button>
 		</div>
 
 		<div class="mt-20 pb-2">
-			<a class="flex items-center gap-2 text-xs" href="/register">
-				<div class="text-zinc-300">Don't have an account?</div>
-				<div class="">Register here</div>
+			<a class="flex items-center gap-2 text-xs" href="/login">
+				<div class="text-zinc-300">Already have an account?</div>
+				<div class="">Login here</div>
 			</a>
 		</div>
 	</div>

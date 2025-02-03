@@ -3,7 +3,7 @@
 	import FileInput from '$lib/components/FileInput.svelte';
 	import TagInput from '$lib/components/TagInput.svelte';
 	import TagRemove from '$lib/components/TagRemove.svelte';
-	import TitleInput from '$lib/components/TitleInput.svelte';
+	import TextInput from '$lib/components/TextInput.svelte';
 	import { API_URL } from '$lib/config.js';
 	import { ungroupTags } from '$lib/utils';
 
@@ -11,6 +11,7 @@
 	let tags = $state({});
 	let fileForm = $state(null);
 	let titleInput = $state(null);
+	let error = $state('');
 
 	function removeTag(tag) {
 		tags[tag.type] = tags[tag.type].filter((t) => t !== tag);
@@ -28,10 +29,17 @@
 	}
 
 	async function createPost() {
-		const tagData = ungroupTags($state.snapshot(tags));
-		const title = titleInput.validTitle();
+		if (!fileForm.validForm()) {
+			error = 'File required';
+			return;
+		}
+		if (!titleInput.validInput()) {
+			error = titleInput.getError();
+			return;
+		}
 
-		if (!fileForm.validForm()) return;
+		const tagData = ungroupTags($state.snapshot(tags));
+		const title = titleInput.getValue();
 
 		try {
 			const response = await fetch(`${API_URL}/posts`, {
@@ -58,7 +66,19 @@
 		<div class="mb-4 border-b border-zinc-600 p-4 font-semibold">Detail</div>
 
 		<div class="w-full px-4">
-			<TitleInput bind:this={titleInput} />
+			<div class="mb-2 text-sm font-semibold text-zinc-300">Title</div>
+			<TextInput
+				className={'max-h-64 w-full resize-none bg-zinc-700 px-2 py-1 outline-none'}
+				rows={1}
+				name={'Title'}
+				placeholder={'Title'}
+				resize={true}
+				minLength={0}
+				maxLength={50}
+				allowNumbers={true}
+				allowSymbols={true}
+				bind:this={titleInput}
+			/>
 		</div>
 
 		<div class="mb-8 mt-8 flex items-center gap-2 border-b border-zinc-600 p-4">
@@ -104,4 +124,14 @@
 			</button>
 		</div>
 	</div>
+
+	{#if error}
+		<div class="flex w-full max-w-xs flex-col">
+			<div
+				class="break-words border border-red-600 bg-red-400 px-4 py-1 text-sm font-semibold text-red-950"
+			>
+				{error}
+			</div>
+		</div>
+	{/if}
 </div>

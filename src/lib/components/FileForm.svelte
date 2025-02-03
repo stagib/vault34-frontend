@@ -65,11 +65,12 @@
 {/each}
 
 <button
-	class="mt-4 flex items-center justify-center rounded-full bg-zinc-600 p-1 text-sm hover:bg-zinc-500"
+	class="mt-4 flex items-center justify-center gap-1 bg-zinc-700 p-1 px-2 text-sm hover:bg-zinc-600"
 	onclick={addFile}
 	aria-label="add-file"
 >
 	<i class="material-symbols--add-2-rounded"></i>
+	<div class="text-xs">Add file</div>
 </button>
 
 <style>

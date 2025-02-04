@@ -1,5 +1,8 @@
 <script>
 	import MoreButtonUser from '$lib/components/MoreButtonUser.svelte';
+	import UserCommentFetcher from '$lib/components/UserCommentFetcher.svelte';
+	import UserLikedPostFetcher from '$lib/components/UserLikedPostFetcher.svelte';
+	import UserPostFetcher from '$lib/components/UserPostFetcher.svelte';
 	import Vault from '$lib/components/Vault.svelte';
 	import VaultFetcher from '$lib/components/VaultFetcher.svelte';
 
@@ -62,7 +65,15 @@
 		</div>
 
 		<div class="max-h-full w-full overflow-y-auto">
-			<VaultFetcher {user} />
+			{#if view === 'vaults'}
+				<VaultFetcher {user} />
+			{:else if view === 'posts'}
+				<UserPostFetcher {user} />
+			{:else if view === 'likedPosts'}
+				<UserLikedPostFetcher {user} />
+			{:else if view === 'comments'}
+				<UserCommentFetcher {user} />
+			{/if}
 		</div>
 	</div>
 {/if}

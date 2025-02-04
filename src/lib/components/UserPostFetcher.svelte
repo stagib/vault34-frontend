@@ -1,30 +1,27 @@
 <script>
 	import { API_URL } from '$lib/config';
 	import { onMount } from 'svelte';
-	import Vault from './Vault.svelte';
-	import VaultCreateModal from './VaultCreateModal.svelte';
+	import Masonry from 'svelte-bricks';
 
 	let { user } = $props();
 
-	let createModal = $state(null);
-
 	let page = 1;
 	let loading = false;
-	let vaults = $state([]);
+	let posts = $state([]);
 	let total = $state(0);
 	let hasNext = $state(true);
 	let target = $state(null);
 
-	async function fetchFiles(username) {
+	async function fetchUserPosts(username) {
 		if (loading || !hasNext) return;
 		loading = true;
 
 		try {
-			const response = await fetch(`${API_URL}/users/${username}/vaults`);
+			const response = await fetch(`${API_URL}/users/${username}/posts`);
 			const data = await response.json();
 
 			if (response.ok) {
-				vaults = [...vaults, ...data.items];
+				posts = [...posts, ...data.items];
 				total = data.total;
 				hasNext = data.page < data.pages;
 				page = page + 1;
@@ -38,26 +35,30 @@
 	$effect(() => {
 		page = 1;
 		hasNext = true;
-		vaults = [];
-		fetchFiles(user.username);
+		posts = [];
+		fetchUserPosts(user.username);
 	});
 </script>
 
-<button
-	class="mb-4 flex items-center justify-center gap-1 border border-zinc-600 bg-zinc-700 p-1 px-2 text-sm hover:bg-zinc-600"
-	onclick={createModal.openModal}
->
-	<i class="material-symbols--add-2-rounded"></i>
-	<div class="text-xs">New vault</div>
-</button>
-
-<div class="grid w-full grid-cols-4 gap-4">
-	{#each vaults as vault}
-		<Vault {vault} {user} />
-	{/each}
+<div class="flex">
+	<a
+		class="mb-4 flex items-center justify-center gap-1 border border-zinc-600 bg-zinc-700 p-1 px-2 text-sm hover:bg-zinc-600"
+		href="/create"
+	>
+		<i class="material-symbols--add-2-rounded"></i>
+		<div class="text-xs">New post</div>
+	</a>
 </div>
 
-<VaultCreateModal bind:this={createModal} />
+<Masonry items={posts} gap={14} let:item={post}>
+	<a href={`/post/${post.id}`}>
+		<img src={post.thumbnail} alt="" />
+	</a>
+</Masonry>
+
+{#if hasNext}
+	<div bind:this={target}></div>
+{/if}
 
 <style>
 	.material-symbols--add-2-rounded {

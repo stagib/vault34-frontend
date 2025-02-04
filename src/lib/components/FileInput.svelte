@@ -13,10 +13,10 @@
 			onchange={(e) => handleFileChange(e, file.id)}
 			bind:this={input}
 		/>
-		<button class="flex w-full items-center gap-2 text-sm" onclick={input.click()}>
+		<button class="flex w-full items-center gap-2 overflow-hidden text-sm" onclick={input.click()}>
 			<div class="bg-zinc-300 px-1 font-medium text-zinc-950 hover:bg-zinc-200">Browse...</div>
 			{#if file.file}
-				<div>{file.file.name}</div>
+				<div class="truncate">{file.file.name}</div>
 			{:else}
 				<div>No file selected.</div>
 			{/if}

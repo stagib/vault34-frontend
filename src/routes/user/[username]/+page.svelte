@@ -62,7 +62,7 @@
 		</div>
 
 		<div class="max-h-full w-full overflow-y-auto">
-			<VaultFetcher username={user.username} />
+			<VaultFetcher {user} />
 		</div>
 	</div>
 {/if}

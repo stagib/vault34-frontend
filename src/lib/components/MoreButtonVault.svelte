@@ -1,10 +1,10 @@
 <script>
 	import DeleteModal from './DeleteModal.svelte';
 	import DropdownMenu from './DropdownMenu.svelte';
-	import EditModal from './EditModal.svelte';
 	import ReportModal from './ReportModal.svelte';
+	import VaultEditModal from './VaultEditModal.svelte';
 
-	let { post, user = null } = $props();
+	let { vault, user = null } = $props();
 	let reportModal = $state(null);
 	let editModal = $state(null);
 	let deleteModal = $state(null);
@@ -24,10 +24,6 @@
 					<button
 						class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600"
 						onclick={editModal.openModal}>Edit</button
-					>
-					<button
-						class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600"
-						onclick={reportModal.openModal}>Report</button
 					>
 					<button
 						class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600"
@@ -56,9 +52,8 @@
 	{/snippet}
 </DropdownMenu>
 
-<ReportModal bind:this={reportModal} targetId={post.id} targetType={'post'} />
-<EditModal bind:this={editModal} {post} />
-<DeleteModal bind:this={deleteModal} targetId={post.id} targetType={'post'} />
+<VaultEditModal bind:this={editModal} {vault} />
+<DeleteModal bind:this={deleteModal} targetType={'vault'} targetId={vault.id} />
 
 <style>
 	.material-symbols--more-vert {

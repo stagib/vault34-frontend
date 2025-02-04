@@ -38,40 +38,36 @@
 	});
 </script>
 
-<div class="flex gap-2">
-	<div class="flex items-center">
-		<button
-			class="flex items-center justify-center rounded-full p-1 text-lg hover:bg-zinc-600"
-			aria-label="like-button"
-			onclick={() => reactToPost('like')}
-		>
-			{#if userReaction === 'like'}
-				<i class="material-symbols--thumb-up-rounded"></i>
-			{:else}
-				<i class="material-symbols--thumb-up-outline-rounded"></i>
-			{/if}
-		</button>
+<div class="flex bg-zinc-700">
+	<button
+		class="flex items-center justify-center border-r border-zinc-600 p-1 px-2 text-lg hover:bg-zinc-600"
+		aria-label="like-button"
+		onclick={() => reactToPost('like')}
+	>
+		{#if userReaction === 'like'}
+			<i class="material-symbols--thumb-up-rounded"></i>
+		{:else}
+			<i class="material-symbols--thumb-up-outline-rounded"></i>
+		{/if}
 		{#if likes}
-			<div class="text-sm">{likes}</div>
+			<div class="ml-2 text-sm">{likes}</div>
 		{/if}
-	</div>
+	</button>
 
-	<div class="flex items-center">
-		<button
-			class="flex items-center justify-center rounded-full p-1 text-lg hover:bg-zinc-600"
-			aria-label="dislike-button"
-			onclick={() => reactToPost('dislike')}
-		>
-			{#if userReaction === 'dislike'}
-				<i class="material-symbols--thumb-down-rounded"></i>
-			{:else}
-				<i class="material-symbols--thumb-down-outline-rounded"></i>
-			{/if}
-		</button>
-		{#if dislikes}
-			<div class="text-sm">{dislikes}</div>
+	<button
+		class="flex items-center justify-center p-1 px-2 text-lg hover:bg-zinc-600"
+		aria-label="dislike-button"
+		onclick={() => reactToPost('dislike')}
+	>
+		{#if userReaction === 'dislike'}
+			<i class="material-symbols--thumb-down-rounded"></i>
+		{:else}
+			<i class="material-symbols--thumb-down-outline-rounded"></i>
 		{/if}
-	</div>
+		{#if dislikes}
+			<div class="ml-2 text-sm">{dislikes}</div>
+		{/if}
+	</button>
 </div>
 
 <style>

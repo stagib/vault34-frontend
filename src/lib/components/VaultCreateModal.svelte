@@ -1,8 +1,11 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { API_URL } from '$lib/config';
 	import { clickOutside } from '$lib/utils';
 	import Modal from './Modal.svelte';
 	import TextInput from './TextInput.svelte';
+
+	let { postId, redirect = false } = $props();
 
 	let modal = $state(null);
 	let titleInput = $state(null);
@@ -24,6 +27,17 @@
 		modal.openModal();
 	}
 
+	async function saveToVault(vaultId, postId) {
+		try {
+			const response = await fetch(`${API_URL}/vaults/${vaultId}/posts/${postId}`, {
+				method: 'POST',
+				credentials: 'include'
+			});
+		} catch (error) {
+			throw error;
+		}
+	}
+
 	async function createVault() {
 		if (!titleInput.validInput()) {
 			error = titleInput.getError();
@@ -41,6 +55,10 @@
 			});
 
 			if (response.ok) {
+				const data = await response.json();
+				if (postId) await saveToVault(data.id, postId);
+				if (redirect) goto(`/vault/${data.id}`);
+
 				modal.closeModal();
 			} else {
 				const data = await response.json();

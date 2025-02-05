@@ -1,9 +1,21 @@
-<button class="flex items-center gap-1 bg-zinc-700 p-1 px-2 hover:bg-zinc-600">
+<script>
+	import PostSaveModal from './PostSaveModal.svelte';
+
+	let { user, postId } = $props();
+	let modal = $state(null);
+</script>
+
+<button
+	class="flex items-center gap-1 bg-zinc-700 p-1 px-2 hover:bg-zinc-600"
+	onclick={modal.openModal}
+>
 	<div class="flex items-center justify-center text-lg">
 		<i class="material-symbols--bookmark-outline-rounded"></i>
 	</div>
 	<div class="text-sm">Save</div>
 </button>
+
+<PostSaveModal bind:this={modal} {user} {postId} />
 
 <style>
 	.material-symbols--bookmark-outline-rounded {

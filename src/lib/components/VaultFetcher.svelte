@@ -15,7 +15,7 @@
 	let hasNext = $state(true);
 	let target = $state(null);
 
-	async function fetchFiles(username) {
+	async function fetchVaults(username) {
 		if (loading || !hasNext) return;
 		loading = true;
 
@@ -39,7 +39,7 @@
 		page = 1;
 		hasNext = true;
 		vaults = [];
-		fetchFiles(user.username);
+		fetchVaults(user.username);
 	});
 </script>
 

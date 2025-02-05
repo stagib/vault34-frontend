@@ -32,7 +32,7 @@
 
 					<div class="flex gap-2 px-3">
 						<PostReaction {post} />
-						<PostSaveButton />
+						<PostSaveButton {user} postId={post.id} />
 					</div>
 				</div>
 

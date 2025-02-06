@@ -44,7 +44,7 @@
 		{#if files[currentIndex].content_type.split('/')[0] == 'image'}
 			<img class="h-full" src={files[currentIndex].src} alt="" />
 		{:else if files[currentIndex].content_type.split('/')[0] == 'video'}
-			<video class="h-full" controls loop>
+			<video class="h-full" controls loop autoplay>
 				<source src={files[currentIndex].src} />
 				<track kind="captions" />
 			</video>

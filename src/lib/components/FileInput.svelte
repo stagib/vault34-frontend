@@ -51,7 +51,9 @@
 
 	{#if showPreview}
 		{#if file.type === 'image'}
-			<img src={file.preview} alt="" />
+			<div class="mb-2 border border-zinc-600">
+				<img src={file.preview} alt="" />
+			</div>
 		{:else if file.type === 'video'}
 			<div class="mb-2 border border-zinc-600">
 				<video controls loop>

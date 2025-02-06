@@ -41,7 +41,14 @@
 	{/if}
 
 	{#if files.length > 0}
-		<img class="h-full" src={files[currentIndex].url} alt="" />
+		{#if files[currentIndex].content_type.split('/')[0] == 'image'}
+			<img class="h-full" src={files[currentIndex].src} alt="" />
+		{:else if files[currentIndex].content_type.split('/')[0] == 'video'}
+			<video class="h-full" controls loop>
+				<source src={files[currentIndex].src} />
+				<track kind="captions" />
+			</video>
+		{/if}
 	{/if}
 </div>
 

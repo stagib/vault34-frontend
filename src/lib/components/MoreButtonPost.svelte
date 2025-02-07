@@ -35,19 +35,15 @@
 					>
 				{:else}
 					<div class="inline-block: group relative">
-						<div class="w-full cursor-default rounded-sm px-2 py-1 text-start text-sm">Edit</div>
+						<div class="w-full cursor-default px-2 py-1 text-start text-sm">Edit</div>
 						<div class="absolute left-full top-0 hidden group-hover:block">
-							<div class=" text-nowrap rounded-sm bg-zinc-600 px-2 py-1 text-sm">
-								Login required
-							</div>
+							<div class=" text-nowrap bg-zinc-600 px-2 py-1 text-sm">Login required</div>
 						</div>
 					</div>
 					<div class="inline-block: group relative">
-						<div class="w-full cursor-default rounded-sm px-2 py-1 text-start text-sm">Report</div>
+						<div class="w-full cursor-default px-2 py-1 text-start text-sm">Report</div>
 						<div class="absolute left-full top-0 hidden group-hover:block">
-							<div class=" text-nowrap rounded-sm bg-zinc-600 px-2 py-1 text-sm">
-								Login required
-							</div>
+							<div class=" text-nowrap bg-zinc-600 px-2 py-1 text-sm">Login required</div>
 						</div>
 					</div>
 				{/if}

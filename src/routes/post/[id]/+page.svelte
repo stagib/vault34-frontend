@@ -24,6 +24,9 @@
 				<div class="flex w-full flex-col">
 					<div class="mb-4 flex flex-col gap-1 px-4">
 						<div class="text-base font-semibold">{post.title}</div>
+						{#if user}
+							<div>{user.username} username</div>
+						{/if}
 						<div class="flex items-center gap-2">
 							<div class="text-sm font-semibold">{post.user.username}</div>
 							<div class="text-xs text-zinc-300">{post.time_since}</div>
@@ -31,7 +34,7 @@
 					</div>
 
 					<div class="flex gap-2 px-3">
-						<PostReaction {post} />
+						<PostReaction {post} {user} />
 						<PostSaveButton {user} postId={post.id} />
 					</div>
 				</div>
@@ -65,7 +68,7 @@
 			<CommentFetcher postId={post.id} />
 
 			<div class="absolute bottom-0 w-full bg-zinc-800 pt-4">
-				<CommentInput postId={post.id} />
+				<CommentInput postId={post.id} {user} />
 			</div>
 		</div>
 	</div>

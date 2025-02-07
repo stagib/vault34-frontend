@@ -1,7 +1,7 @@
 <script>
 	import { API_URL } from '$lib/config';
 
-	let { postId } = $props();
+	let { postId, user } = $props();
 	let content = $state('');
 
 	function autoResize(event) {
@@ -18,6 +18,7 @@
 	}
 
 	async function handleComment() {
+		if (!user) return;
 		try {
 			const response = await fetch(`${API_URL}/posts/${postId}/comments`, {
 				method: 'POST',
@@ -35,35 +36,37 @@
 	}
 </script>
 
-<div class="p-2">
-	<div class="flex w-full border border-zinc-600">
-		<textarea
-			class="max-h-64 w-full resize-none bg-zinc-800 p-2 text-sm outline-none"
-			rows="1"
-			placeholder="Add comment"
-			oninput={autoResize}
-			bind:value={content}
-			onkeydown={handleKeyDown}
-		></textarea>
+{#if user}
+	<div class="p-2">
+		<div class="flex w-full border border-zinc-600">
+			<textarea
+				class="max-h-64 w-full resize-none bg-zinc-800 p-2 text-sm outline-none"
+				rows="1"
+				placeholder="Add comment"
+				oninput={autoResize}
+				bind:value={content}
+				onkeydown={handleKeyDown}
+			></textarea>
 
-		<div class="mt-auto flex items-center justify-center gap-1 p-1">
-			<button
-				class="flex items-center justify-center rounded-full bg-zinc-600 p-2"
-				aria-label="attach-button"
-			>
-				<!--TODO-->
-				<i class="material-symbols--attach-file"></i>
-			</button>
-			<button
-				class="flex items-center justify-center rounded-full bg-zinc-600 p-2"
-				aria-label="comment-button"
-				onclick={handleComment}
-			>
-				<i class="material-symbols--send-rounded"></i>
-			</button>
+			<div class="mt-auto flex items-center justify-center gap-1 p-1">
+				<button
+					class="flex items-center justify-center rounded-full bg-zinc-600 p-2"
+					aria-label="attach-button"
+				>
+					<!--TODO-->
+					<i class="material-symbols--attach-file"></i>
+				</button>
+				<button
+					class="flex items-center justify-center rounded-full bg-zinc-600 p-2"
+					aria-label="comment-button"
+					onclick={handleComment}
+				>
+					<i class="material-symbols--send-rounded"></i>
+				</button>
+			</div>
 		</div>
 	</div>
-</div>
+{/if}
 
 <style>
 	.material-symbols--send-rounded {

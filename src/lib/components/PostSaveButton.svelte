@@ -3,16 +3,27 @@
 
 	let { user, postId } = $props();
 	let modal = $state(null);
+
+	function handleClick() {
+		if (!user) return;
+		modal.openModal();
+	}
 </script>
 
 <button
-	class="flex items-center gap-1 bg-zinc-700 p-1 px-2 hover:bg-zinc-600"
-	onclick={modal.openModal}
+	class="group relative flex items-center gap-1 bg-zinc-700 p-1 px-2 hover:bg-zinc-600"
+	onclick={handleClick}
 >
 	<div class="flex items-center justify-center text-lg">
 		<i class="material-symbols--bookmark-outline-rounded"></i>
 	</div>
 	<div class="text-sm">Save</div>
+
+	{#if !user}
+		<div class="absolute left-0 top-full hidden group-hover:block">
+			<div class=" text-nowrap bg-zinc-600 px-2 py-1 text-sm">Login required</div>
+		</div>
+	{/if}
 </button>
 
 <PostSaveModal bind:this={modal} {user} {postId} />

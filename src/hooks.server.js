@@ -1,4 +1,3 @@
-import { API_URL } from '$lib/config';
 import { verifyToken } from '$lib/utils';
 
 export async function handle({ event, resolve }) {

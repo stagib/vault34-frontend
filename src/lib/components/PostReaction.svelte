@@ -1,13 +1,14 @@
 <script>
 	import { API_URL } from '$lib/config';
 
-	let { post } = $props();
+	let { post, user } = $props();
 
 	let likes = $state(post.likes);
 	let dislikes = $state(post.dislikes);
 	let userReaction = $state(post.user_reaction);
 
 	async function reactToPost(type) {
+		if (!user) return;
 		if (type === userReaction) {
 			type = 'none';
 		}
@@ -38,7 +39,7 @@
 	});
 </script>
 
-<div class="flex bg-zinc-700">
+<div class="group relative flex bg-zinc-700">
 	<button
 		class="flex items-center justify-center border-r border-zinc-600 p-1 px-2 text-lg hover:bg-zinc-600"
 		aria-label="like-button"
@@ -68,6 +69,12 @@
 			<div class="ml-2 text-sm">{dislikes}</div>
 		{/if}
 	</button>
+
+	{#if !user}
+		<div class="absolute left-0 top-full hidden group-hover:block">
+			<div class=" text-nowrap bg-zinc-600 px-2 py-1 text-sm">Login required</div>
+		</div>
+	{/if}
 </div>
 
 <style>

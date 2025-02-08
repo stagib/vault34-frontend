@@ -20,10 +20,13 @@
 		loading = true;
 
 		try {
-			const response = await fetch(`${API_URL}/users/${username}/vaults`);
-			const data = await response.json();
+			const response = await fetch(`${API_URL}/users/${username}/vaults`, {
+				method: 'GET',
+				credentials: 'include'
+			});
 
 			if (response.ok) {
+				const data = await response.json();
 				vaults = [...vaults, ...data.items];
 				total = data.total;
 				hasNext = data.page < data.pages;

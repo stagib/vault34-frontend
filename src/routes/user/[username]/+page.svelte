@@ -73,7 +73,7 @@
 			{:else if view === 'likedPosts'}
 				<UserLikedPostFetcher {fetchedUser} />
 			{:else if view === 'comments'}
-				<UserCommentFetcher {fetchedUser} />
+				<UserCommentFetcher {fetchedUser} {user} />
 			{/if}
 		</div>
 	</div>

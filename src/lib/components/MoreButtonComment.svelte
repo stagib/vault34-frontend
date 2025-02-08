@@ -6,10 +6,6 @@
 	let { user = null, comment } = $props();
 	let reportModal = $state(null);
 	let deleteModal = $state(null);
-
-	function test() {
-		console.log('sdf');
-	}
 </script>
 
 <DropdownMenu>
@@ -27,10 +23,12 @@
 						class="px-2 py-1 text-start text-sm hover:bg-zinc-600"
 						onclick={reportModal.openModal}>Report</button
 					>
-					<button
-						class="px-2 py-1 text-start text-sm hover:bg-zinc-600"
-						onclick={deleteModal.openModal}>Delete</button
-					>
+					{#if user.id === comment.user.id}
+						<button
+							class="px-2 py-1 text-start text-sm hover:bg-zinc-600"
+							onclick={deleteModal.openModal}>Delete</button
+						>
+					{/if}
 				{:else}
 					<div class="inline-block: group relative">
 						<div class="w-full cursor-default px-2 py-1 text-start text-sm">Report</div>

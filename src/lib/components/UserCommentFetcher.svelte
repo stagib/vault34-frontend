@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import Comment from './Comment.svelte';
 
-	let { fetchedUser } = $props();
+	let { fetchedUser, user } = $props();
 
 	let page = 1;
 	let loading = false;
@@ -44,7 +44,7 @@
 	{#each comments as comment}
 		<div class="mb-4 w-full max-w-md border border-zinc-600 bg-zinc-800 p-4">
 			<a class="px-1 text-xs" href={`/post/${comment.post.id}`}>Post: {comment.post.id}</a>
-			<Comment {comment} postId={comment.post.id} />
+			<Comment {comment} postId={comment.post.id} {user} />
 		</div>
 	{/each}
 </div>

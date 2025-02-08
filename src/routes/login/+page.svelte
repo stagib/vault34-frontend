@@ -30,6 +30,7 @@
 
 		if (response.ok) {
 			goto('/');
+			window.location.reload();
 		} else {
 			const data = await response.json();
 			error = data.detail;

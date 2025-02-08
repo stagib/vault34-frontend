@@ -39,10 +39,11 @@
 			<div class="font-semibold">{vault.title}</div>
 			<div class="text-sm text-zinc-300">{vault.post_count} posts</div>
 		</a>
-
-		<div class="mt-1">
-			<MoreButtonVault {user} {vault} />
-		</div>
+		{#if user && user.id === vault.user.id}
+			<div class="mt-1">
+				<MoreButtonVault {user} {vault} />
+			</div>
+		{/if}
 	</div>
 </div>
 

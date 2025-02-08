@@ -46,13 +46,15 @@
 	});
 </script>
 
-<button
-	class="mb-4 flex items-center justify-center gap-1 border border-zinc-600 bg-zinc-700 p-1 px-2 text-sm hover:bg-zinc-600"
-	onclick={createModal.openModal}
->
-	<i class="material-symbols--add-2-rounded"></i>
-	<div class="text-xs">New vault</div>
-</button>
+{#if user && user.id === fetchedUser.id}
+	<button
+		class="mb-4 flex items-center justify-center gap-1 border border-zinc-600 bg-zinc-700 p-1 px-2 text-sm hover:bg-zinc-600"
+		onclick={createModal.openModal}
+	>
+		<i class="material-symbols--add-2-rounded"></i>
+		<div class="text-xs">New vault</div>
+	</button>
+{/if}
 
 <div class="grid w-full grid-cols-4 gap-4">
 	{#each vaults as vault}

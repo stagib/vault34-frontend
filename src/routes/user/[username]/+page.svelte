@@ -69,7 +69,7 @@
 			{#if view === 'vaults'}
 				<VaultFetcher {fetchedUser} {user} />
 			{:else if view === 'posts'}
-				<UserPostFetcher {fetchedUser} />
+				<UserPostFetcher {fetchedUser} {user} />
 			{:else if view === 'likedPosts'}
 				<UserLikedPostFetcher {fetchedUser} />
 			{:else if view === 'comments'}

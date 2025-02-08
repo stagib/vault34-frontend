@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import Masonry from 'svelte-bricks';
 
-	let { fetchedUser } = $props();
+	let { fetchedUser, user } = $props();
 
 	let page = 1;
 	let loading = false;
@@ -40,15 +40,17 @@
 	});
 </script>
 
-<div class="flex">
-	<a
-		class="mb-4 flex items-center justify-center gap-1 border border-zinc-600 bg-zinc-700 p-1 px-2 text-sm hover:bg-zinc-600"
-		href="/create"
-	>
-		<i class="material-symbols--add-2-rounded"></i>
-		<div class="text-xs">New post</div>
-	</a>
-</div>
+{#if user && user.id === fetchedUser.id}
+	<div class="flex">
+		<a
+			class="mb-4 flex items-center justify-center gap-1 border border-zinc-600 bg-zinc-700 p-1 px-2 text-sm hover:bg-zinc-600"
+			href="/create"
+		>
+			<i class="material-symbols--add-2-rounded"></i>
+			<div class="text-xs">New post</div>
+		</a>
+	</div>
+{/if}
 
 <Masonry items={posts} gap={14} let:item={post}>
 	<a href={`/post/${post.id}`}>

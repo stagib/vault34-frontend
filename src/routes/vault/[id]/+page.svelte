@@ -29,9 +29,11 @@
 					</div>
 				</div>
 
-				<div class="ml-auto px-3">
-					<MoreButtonVault {user} {vault} />
-				</div>
+				{#if user && user.id === vault.user.id}
+					<div class="ml-auto px-3">
+						<MoreButtonVault {user} {vault} />
+					</div>
+				{/if}
 			</div>
 		</div>
 

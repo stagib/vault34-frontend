@@ -1,7 +1,9 @@
 import { API_URL } from '$lib/config';
+import { redirect } from '@sveltejs/kit';
 
 export async function load({ params, fetch, locals }) {
 	const vaultId = params.id;
+	const user = locals.user;
 	let vault = null;
 
 	try {
@@ -15,5 +17,15 @@ export async function load({ params, fetch, locals }) {
 	} catch (error) {
 		throw error;
 	}
-	return { vault, user: locals.user || null };
+
+	if (vault && vault.privacy === 'private') {
+		if (!user) {
+			throw redirect(303, '/');
+		}
+		if (user.id !== vault.user.id) {
+			throw redirect(303, '/');
+		}
+	}
+
+	return { vault, user };
 }

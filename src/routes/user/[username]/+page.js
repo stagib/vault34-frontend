@@ -2,7 +2,7 @@ import { API_URL } from '$lib/config';
 
 export async function load({ params, fetch }) {
 	const username = params.username;
-	let user = null;
+	let fetchedUser = null;
 
 	try {
 		const response = await fetch(`${API_URL}/users/${username}`, {
@@ -10,10 +10,10 @@ export async function load({ params, fetch }) {
 		});
 
 		if (response.ok) {
-			user = await response.json();
+			fetchedUser = await response.json();
 		}
 	} catch (error) {
 		throw error;
 	}
-	return { user };
+	return { fetchedUser };
 }

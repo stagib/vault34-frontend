@@ -4,7 +4,7 @@
 	import Vault from './Vault.svelte';
 	import VaultCreateModal from './VaultCreateModal.svelte';
 
-	let { user } = $props();
+	let { fetchedUser, user } = $props();
 
 	let createModal = $state(null);
 
@@ -42,7 +42,7 @@
 		page = 1;
 		hasNext = true;
 		vaults = [];
-		fetchVaults(user.username);
+		fetchVaults(fetchedUser.username);
 	});
 </script>
 

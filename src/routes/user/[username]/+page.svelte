@@ -8,16 +8,17 @@
 
 	let { data } = $props();
 	let user = $derived(data.user);
+	let fetchedUser = $derived(data.fetchedUser);
 	let view = $state('vaults');
 </script>
 
-{#if user}
+{#if fetchedUser}
 	<div class="flex h-screen gap-4 px-4 pb-10 pt-14">
 		<div class="flex max-h-full w-full max-w-xs flex-col border border-zinc-600 bg-zinc-800">
 			<div class="flex border-b border-zinc-600 px-4 py-4 pb-8">
 				<div class="flex flex-col">
-					<div class="mb-1 text-base font-semibold">{user.username}</div>
-					<div class="text-sm text-zinc-300">Joined {user.time_since}</div>
+					<div class="mb-1 text-base font-semibold">{fetchedUser.username}</div>
+					<div class="text-sm text-zinc-300">Joined {fetchedUser.time_since}</div>
 				</div>
 
 				<div class="ml-auto">
@@ -32,7 +33,7 @@
 					onclick={() => (view = 'vaults')}
 				>
 					<div class="font-semibold">Vaults</div>
-					<div class="text-sm text-zinc-300">{user.vault_count}</div>
+					<div class="text-sm text-zinc-300">{fetchedUser.vault_count}</div>
 				</button>
 
 				<button
@@ -41,7 +42,7 @@
 					onclick={() => (view = 'posts')}
 				>
 					<div class="font-semibold">Posts</div>
-					<div class="text-sm text-zinc-300">{user.post_count}</div>
+					<div class="text-sm text-zinc-300">{fetchedUser.post_count}</div>
 				</button>
 
 				<button
@@ -50,7 +51,7 @@
 					onclick={() => (view = 'likedPosts')}
 				>
 					<div class="font-semibold">Liked Posts</div>
-					<div class="text-sm text-zinc-300">{user.liked_posts}</div>
+					<div class="text-sm text-zinc-300">{fetchedUser.liked_posts}</div>
 				</button>
 
 				<button
@@ -59,20 +60,20 @@
 					onclick={() => (view = 'comments')}
 				>
 					<div class="font-semibold">Comments</div>
-					<div class="text-sm text-zinc-300">{user.comment_count}</div>
+					<div class="text-sm text-zinc-300">{fetchedUser.comment_count}</div>
 				</button>
 			</div>
 		</div>
 
 		<div class="max-h-full w-full overflow-y-auto">
 			{#if view === 'vaults'}
-				<VaultFetcher {user} />
+				<VaultFetcher {fetchedUser} {user} />
 			{:else if view === 'posts'}
-				<UserPostFetcher {user} />
+				<UserPostFetcher {fetchedUser} />
 			{:else if view === 'likedPosts'}
-				<UserLikedPostFetcher {user} />
+				<UserLikedPostFetcher {fetchedUser} />
 			{:else if view === 'comments'}
-				<UserCommentFetcher {user} />
+				<UserCommentFetcher {fetchedUser} />
 			{/if}
 		</div>
 	</div>

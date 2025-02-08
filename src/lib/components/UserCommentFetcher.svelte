@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import Comment from './Comment.svelte';
 
-	let { user } = $props();
+	let { fetchedUser } = $props();
 
 	let page = 1;
 	let loading = false;
@@ -36,7 +36,7 @@
 		page = 1;
 		hasNext = true;
 		comments = [];
-		fetchFiles(user.username);
+		fetchFiles(fetchedUser.username);
 	});
 </script>
 

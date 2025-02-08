@@ -1,7 +1,8 @@
 <script>
 	import { API_URL } from '$lib/config';
+	import MoreButtonComment from './MoreButtonComment.svelte';
 
-	let { comment, postId } = $props();
+	let { comment, postId, user } = $props();
 
 	let likes = $state(comment.likes);
 	let dislikes = $state(comment.dislikes);
@@ -34,15 +35,17 @@
 
 <div class="mb-6">
 	<div class="flex items-center gap-1 pl-1">
-		<div class="text-sm font-semibold">{comment.user.username}</div>
+		<a class="text-sm font-semibold" href={`/user/${comment.user.username}`}
+			>{comment.user.username}</a
+		>
 		<div class="text-xs text-zinc-300">{comment.time_since}</div>
 	</div>
-	<div class="mb-1 break-words pl-1 text-sm">{comment.content}</div>
+	<div class="mb-3 break-words pl-1 text-sm">{comment.content}</div>
 
-	<div class="flex gap-2">
-		<div class="flex items-center">
+	<div class="flex gap-1 pl-1">
+		<div class="text group relative flex bg-zinc-700">
 			<button
-				class="flex items-center justify-center rounded-full p-1 text-lg hover:bg-zinc-600"
+				class="flex items-center justify-center border-r border-zinc-600 p-1 px-2 text-base hover:bg-zinc-600"
 				aria-label="like-button"
 				onclick={() => reactToComment('like')}
 			>
@@ -51,15 +54,13 @@
 				{:else}
 					<i class="material-symbols--thumb-up-outline-rounded"></i>
 				{/if}
+				{#if likes}
+					<div class="ml-2 text-xs">{likes}</div>
+				{/if}
 			</button>
-			{#if likes}
-				<div class="text-sm">{likes}</div>
-			{/if}
-		</div>
 
-		<div class="flex items-center">
 			<button
-				class="flex items-center justify-center rounded-full p-1 text-lg hover:bg-zinc-600"
+				class="flex items-center justify-center p-1 px-2 text-base hover:bg-zinc-600"
 				aria-label="dislike-button"
 				onclick={() => reactToComment('dislike')}
 			>
@@ -68,11 +69,13 @@
 				{:else}
 					<i class="material-symbols--thumb-down-outline-rounded"></i>
 				{/if}
+				{#if dislikes}
+					<div class="ml-2 text-xs">{dislikes}</div>
+				{/if}
 			</button>
-			{#if dislikes}
-				<div class="text-sm">{dislikes}</div>
-			{/if}
 		</div>
+
+		<MoreButtonComment {user} {comment} />
 	</div>
 </div>
 

@@ -1,8 +1,9 @@
 <script>
 	import { API_URL } from '$lib/config';
 
-	let { postId, user } = $props();
+	let { postId, user, onComment } = $props();
 	let content = $state('');
+	let textarea = $state(null);
 
 	function autoResize(event) {
 		const textarea = event.target;
@@ -28,7 +29,10 @@
 			});
 
 			if (response.ok) {
+				const data = await response.json();
+				onComment?.(data);
 				content = '';
+				textarea.style.height = 'auto';
 			}
 		} catch (error) {
 			throw error;
@@ -45,6 +49,7 @@
 				placeholder="Add comment"
 				oninput={autoResize}
 				bind:value={content}
+				bind:this={textarea}
 				onkeydown={handleKeyDown}
 			></textarea>
 

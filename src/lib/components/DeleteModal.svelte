@@ -42,11 +42,29 @@
 		}
 	}
 
+	async function deleteComment(commentId, postId) {
+		try {
+			const response = await fetch(`${API_URL}/posts/${postId}/comments/${commentId}`, {
+				method: 'DELETE',
+				credentials: 'include'
+			});
+
+			if (response.ok) {
+				modal.closeModal();
+				window.location.reload();
+			}
+		} catch (error) {
+			throw error;
+		}
+	}
+
 	function handleDelete(targetType, targetId) {
 		if (targetType === 'post') {
 			deletePost(targetId);
 		} else if (targetType === 'vault') {
 			deleteVault(targetId);
+		} else if (targetType === 'comment') {
+			deleteComment(targetId, postId);
 		}
 	}
 </script>

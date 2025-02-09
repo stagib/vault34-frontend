@@ -18,7 +18,7 @@
 	{/snippet}
 
 	{#snippet content()}
-		<div class="absolute left-full top-0 z-20">
+		<div class="absolute right-full top-0 z-20 xl:left-full">
 			<div class="flex w-32 flex-col rounded-sm border border-zinc-600 bg-zinc-700 p-1">
 				{#if user}
 					<button

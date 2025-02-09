@@ -18,8 +18,8 @@
 </script>
 
 {#if post}
-	<div class="mx-4 flex h-screen pb-10 pt-14">
-		<div class="mr-4 flex w-full max-w-72 flex-col border border-zinc-600 bg-zinc-800">
+	<div class="mx-4 flex flex-col pb-10 pt-14 xl:h-screen xl:flex-row">
+		<div class="mr-4 flex w-full flex-col border border-zinc-600 bg-zinc-800 xl:max-w-72">
 			<div class="flex border-b border-zinc-600 py-2 pb-4">
 				<div class="flex w-full flex-col">
 					<div class="mb-4 flex flex-col gap-1 px-4">

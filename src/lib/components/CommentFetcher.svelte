@@ -63,7 +63,7 @@
 </script>
 
 <div
-	class="relative ml-4 flex w-full max-w-xs flex-col overflow-hidden border border-zinc-600 bg-zinc-800"
+	class="relative ml-0 flex max-h-96 w-full flex-col overflow-hidden border border-zinc-600 bg-zinc-800 xl:ml-4 xl:max-h-screen xl:max-w-xs"
 >
 	<div class="absolute top-0 w-full">
 		<div class="flex items-center gap-2 border-b border-zinc-600 bg-zinc-800 px-4 py-2">

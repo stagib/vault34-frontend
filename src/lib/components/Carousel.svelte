@@ -17,7 +17,7 @@
 	});
 </script>
 
-<div class="relative max-h-screen flex-1 overflow-hidden">
+<div class="relative flex-1 overflow-hidden xl:max-h-screen">
 	{#if total > 1}
 		<div class="absolute left-2 top-2 rounded-lg bg-zinc-600 px-2 py-1 text-sm">
 			{currentIndex + 1} / {total}
@@ -42,7 +42,11 @@
 
 	{#if files.length > 0}
 		{#if files[currentIndex].content_type.split('/')[0] == 'image'}
-			<img class="h-full" src={files[currentIndex].src} alt="" />
+			<img
+				class="h-full w-full object-contain xl:w-fit xl:object-contain"
+				src={files[currentIndex].src}
+				alt=""
+			/>
 		{:else if files[currentIndex].content_type.split('/')[0] == 'video'}
 			<video class="h-full" controls loop autoplay>
 				<source src={files[currentIndex].src} />

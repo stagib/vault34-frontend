@@ -9,6 +9,7 @@
 	let userReaction = $state(comment.user_reaction);
 
 	async function reactToComment(type) {
+		if (!user) return;
 		if (type === userReaction) {
 			type = 'none';
 		}
@@ -73,6 +74,12 @@
 					<div class="ml-2 text-xs">{dislikes}</div>
 				{/if}
 			</button>
+
+			{#if !user}
+				<div class="absolute left-0 top-full hidden group-hover:block">
+					<div class=" text-nowrap bg-zinc-600 px-2 py-1 text-sm">Login required</div>
+				</div>
+			{/if}
 		</div>
 
 		<MoreButtonComment {user} {comment} />

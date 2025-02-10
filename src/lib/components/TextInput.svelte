@@ -10,6 +10,9 @@
 		allowSymbols = false,
 		resize = false,
 		rows = 1,
+		onInput,
+		onClick,
+		onKeypress,
 		value = $bindable('')
 	} = $props();
 
@@ -23,6 +26,7 @@
 
 	function handleInput(event) {
 		if (resize) autoResize(event);
+		onInput?.();
 	}
 
 	export function getError() {
@@ -71,8 +75,24 @@
 </script>
 
 {#if resize}
-	<textarea class={className} type="text" {placeholder} {rows} bind:value oninput={handleInput}
+	<textarea
+		class={className}
+		type="text"
+		{placeholder}
+		{rows}
+		bind:value
+		oninput={handleInput}
+		onclick={() => onClick?.()}
+		onkeypress={(e) => onKeypress?.(e)}
 	></textarea>
 {:else}
-	<input class={className} type="text" {placeholder} bind:value oninput={handleInput} />
+	<input
+		class={className}
+		type="text"
+		{placeholder}
+		bind:value
+		oninput={handleInput}
+		onclick={() => onClick?.()}
+		onkeypress={(e) => onKeypress?.(e)}
+	/>
 {/if}

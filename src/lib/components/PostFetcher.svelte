@@ -1,7 +1,7 @@
 <script>
 	import { API_URL } from '$lib/config';
 	import { onMount } from 'svelte';
-	import Masonry from 'svelte-bricks';
+	import Masonry from './Masonry.svelte';
 
 	let posts = $state([]);
 	let page = $state(1);
@@ -45,10 +45,12 @@
 </script>
 
 <div class="mx-4">
-	<Masonry items={posts} gap={14} let:item={post}>
-		<a href={`/post/${post.id}`}>
-			<img src={post.thumbnail} alt="" />
-		</a>
+	<Masonry items={posts}>
+		{#each posts as post}
+			<a href={`/post/${post.id}`}>
+				<img class="w-full" src={post.thumbnail} alt="" />
+			</a>
+		{/each}
 	</Masonry>
 </div>
 

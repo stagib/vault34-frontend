@@ -8,6 +8,7 @@
 	let query = $state('');
 	let searchResults = $state([]);
 	let queryInput = $state(null);
+	let queryValue = $state('');
 	let showResults = $state(true);
 
 	async function searchTags() {
@@ -20,7 +21,7 @@
 		showResults = true;
 
 		try {
-			const response = await fetch(`${API_URL}/tags?query=${query}`);
+			const response = await fetch(`${API_URL}/tags?${query ? `&query=${query}` : ''}`);
 			if (response.ok) {
 				const data = await response.json();
 				searchResults = data.items;
@@ -33,8 +34,14 @@
 	function handleKeyPress(event) {
 		if (event.key === 'Enter') {
 			const query = queryInput.getValue();
-			goto(`/?query=${query}`);
+			showResults = false;
+			goto(`/${query ? `?query=${query}` : ''}`);
 		}
+	}
+
+	function tagClick(tagName) {
+		queryValue = tagName;
+		showResults = false;
 	}
 </script>
 
@@ -47,7 +54,7 @@
 			<a class="bg-zinc-800 px-4 py-1 hover:bg-zinc-700" href="/create">Create</a>
 			<div class="relative mx-4" use:clickOutside={() => (showResults = false)}>
 				<TextInput
-					className={'w-80 bg-zinc-800 px-2 py-1 outline-none '}
+					className={'w-80 bg-zinc-800 px-2 py-1 outline-none border border-zinc-600'}
 					placeholder={'Search'}
 					name={'Query'}
 					minLength={1}
@@ -56,13 +63,14 @@
 					onClick={() => (showResults = true)}
 					onKeypress={handleKeyPress}
 					bind:this={queryInput}
+					bind:value={queryValue}
 				/>
 
 				{#if showResults}
 					{#if searchResults.length > 0}
 						<div class="absolute top-full z-50 w-full gap-2 bg-zinc-800 py-2">
 							{#each searchResults as tag}
-								<a href={`/?query=${tag.name}`}>
+								<a href={`/?query=${tag.name}`} onclick={() => tagClick(tag.name)}>
 									<div class="flex items-center gap-2 p-2 hover:bg-zinc-700">
 										<div class="text-xs">{tag.name}</div>
 										<div class="text-xs text-zinc-400">{tag.count}</div>

@@ -3,18 +3,20 @@
 	import { onMount } from 'svelte';
 	import Masonry from './Masonry.svelte';
 
+	let { query } = $props();
+
+	let page = 1;
+	let loading = false;
 	let posts = $state([]);
-	let page = $state(1);
 	let hasNext = $state(true);
-	let loading = $state(false);
 	let target = $state(null);
 
-	async function fetchPosts() {
+	async function fetchPosts(q) {
 		if (loading || !hasNext) return;
 		loading = true;
 
 		try {
-			const response = await fetch(`${API_URL}/posts?page=${page}`);
+			const response = await fetch(`${API_URL}/posts?page=${page}${q ? `&query=${q}` : ''}`);
 			const data = await response.json();
 
 			if (response.ok) {
@@ -41,6 +43,13 @@
 
 		if (hasNext) observer.observe(target);
 		return () => observer.disconnect;
+	});
+
+	$effect(() => {
+		page = 1;
+		hasNext = true;
+		posts = [];
+		fetchPosts(query);
 	});
 </script>
 

@@ -31,11 +31,11 @@
 	}
 
 	onMount(() => {
-		fetchPosts();
+		fetchPosts(query);
 		const observer = new IntersectionObserver(
 			([entry]) => {
 				if (entry.isIntersecting) {
-					fetchPosts();
+					fetchPosts(query);
 				}
 			},
 			{ root: null, threshold: 0, rootMargin: '100px' }

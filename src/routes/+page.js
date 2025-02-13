@@ -1,4 +1,4 @@
-export async function load({ params }) {
-	const query = params.query;
+export async function load({ url }) {
+	const query = url.searchParams.get('query');
 	return { query };
 }

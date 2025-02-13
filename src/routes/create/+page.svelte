@@ -1,4 +1,5 @@
 <script>
+	import { goto } from '$app/navigation';
 	import FileForm from '$lib/components/FileForm.svelte';
 	import FileInput from '$lib/components/FileInput.svelte';
 	import TagInput from '$lib/components/TagInput.svelte';
@@ -28,6 +29,23 @@
 		}
 	}
 
+	async function updatePost(postId, title, tags) {
+		try {
+			const response = await fetch(`${API_URL}/posts/${postId}`, {
+				method: 'PUT',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ title, tags }),
+				credentials: 'include'
+			});
+
+			if (response.ok) {
+				goto(`/post/${postId}`);
+			}
+		} catch (error) {
+			throw error;
+		}
+	}
+
 	async function createPost() {
 		if (!fileForm.validForm()) {
 			error = 'File required';
@@ -38,20 +56,28 @@
 			return;
 		}
 
-		const tagData = ungroupTags($state.snapshot(tags));
+		const formData = new FormData();
 		const title = titleInput.getValue();
+		const files = fileForm.getFiles();
+
+		formData.append('title', title);
+		files.forEach((f) => {
+			if (f.file) {
+				formData.append('files', f.file);
+			}
+		});
 
 		try {
 			const response = await fetch(`${API_URL}/posts`, {
 				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({ title, tags: tagData }),
+				body: formData,
 				credentials: 'include'
 			});
 
 			if (response.ok) {
 				const data = await response.json();
-				fileForm.submitFiles(data.id);
+				const tagData = ungroupTags($state.snapshot(tags));
+				await updatePost(data.id, data.title, tagData);
 			}
 		} catch (error) {
 			throw error;

@@ -36,27 +36,8 @@
 		return files.some((file) => file.file !== null);
 	}
 
-	export async function submitFiles(postId) {
-		const formData = new FormData();
-		files.forEach((f) => {
-			if (f.file) {
-				formData.append('files', f.file);
-			}
-		});
-
-		try {
-			const response = await fetch(`${API_URL}/posts/${postId}/files`, {
-				method: 'POST',
-				body: formData,
-				credentials: 'include'
-			});
-
-			if (response.ok) {
-				goto(`/post/${postId}`);
-			}
-		} catch (error) {
-			throw error;
-		}
+	export function getFiles() {
+		return files;
 	}
 </script>
 

@@ -35,7 +35,10 @@
 		loading = true;
 
 		try {
-			const response = await fetch(`${API_URL}/users/${username}/vaults?post_id=${postId}`);
+			const response = await fetch(`${API_URL}/users/${username}/vaults?post_id=${postId}`, {
+				method: 'GET',
+				credentials: 'include'
+			});
 			const data = await response.json();
 
 			if (response.ok) {

@@ -43,7 +43,7 @@
 {#if user && user.id === fetchedUser.id}
 	<div class="flex">
 		<a
-			class="mb-4 flex items-center justify-center gap-1 border border-zinc-600 bg-zinc-700 p-1 px-2 text-sm hover:bg-zinc-600"
+			class="mb-4 flex items-center justify-center gap-1 rounded-md border border-zinc-600 bg-zinc-700 p-2 px-2 text-sm hover:bg-zinc-600"
 			href="/create"
 		>
 			<i class="material-symbols--add-2-rounded"></i>

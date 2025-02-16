@@ -3,8 +3,8 @@
 	let { vault, user } = $props();
 </script>
 
-<div class="flex w-full flex-col">
-	<a class="relative flex h-48 gap-1" href={`/vault/${vault.id}`}>
+<div class="flex aspect-[16/9] w-full flex-col">
+	<a class="relative flex h-full gap-1" href={`/vault/${vault.id}`}>
 		{#if vault.privacy === 'private'}
 			<div class="absolute left-2 top-2">
 				<div

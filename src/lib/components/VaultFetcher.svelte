@@ -48,7 +48,7 @@
 
 {#if user && user.id === fetchedUser.id}
 	<button
-		class="mb-4 flex items-center justify-center gap-1 border border-zinc-600 bg-zinc-700 p-1 px-2 text-sm hover:bg-zinc-600"
+		class="mb-4 flex items-center justify-center gap-1 rounded-md border border-zinc-600 bg-zinc-700 p-2 px-2 text-sm hover:bg-zinc-600"
 		onclick={createModal.openModal}
 	>
 		<i class="material-symbols--add-2-rounded"></i>
@@ -56,7 +56,7 @@
 	</button>
 {/if}
 
-<div class="grid w-full grid-cols-4 gap-4">
+<div class="grid w-full grid-cols-2 gap-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
 	{#each vaults as vault}
 		<Vault {vault} {user} />
 	{/each}

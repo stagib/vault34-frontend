@@ -53,10 +53,10 @@
 	});
 </script>
 
-<div class="mx-4">
+<div class="mx-2 sm:mx-4">
 	<Masonry items={posts}>
 		{#each posts as post}
-			<a href={`/post/${post.id}`}>
+			<a class="overflow-hidden rounded-md bg-zinc-800" href={`/post/${post.id}`}>
 				<img class="w-full" src={post.thumbnail} alt="" />
 			</a>
 		{/each}

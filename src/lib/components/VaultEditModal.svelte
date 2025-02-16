@@ -61,7 +61,7 @@
 
 <Modal bind:this={modal}>
 	{#snippet content()}
-		<div class="flex h-full w-full flex-col items-center justify-center bg-zinc-950 bg-opacity-75">
+		<div class="flex h-full w-full flex-col items-center justify-center bg-zinc-950 bg-opacity-85">
 			{#if apiError}
 				<div class="w-full max-w-sm">
 					<div

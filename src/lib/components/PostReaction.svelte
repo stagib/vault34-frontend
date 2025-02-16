@@ -39,32 +39,36 @@
 	});
 </script>
 
-<div class="group relative flex bg-zinc-700">
+<div class="group relative flex rounded-md bg-zinc-700">
 	<button
-		class="flex items-center justify-center border-r border-zinc-600 p-1 px-2 text-lg hover:bg-zinc-600"
+		class="flex items-center justify-center rounded-l-md border-r border-zinc-600 p-1 px-2 text-lg hover:bg-zinc-600"
 		aria-label="like-button"
 		onclick={() => reactToPost('like')}
 	>
-		{#if userReaction === 'like'}
-			<i class="material-symbols--thumb-up-rounded"></i>
-		{:else}
-			<i class="material-symbols--thumb-up-outline-rounded"></i>
-		{/if}
+		<div class="flex items-center justify-center text-base">
+			{#if userReaction === 'like'}
+				<i class="material-symbols--thumb-up-rounded"></i>
+			{:else}
+				<i class="material-symbols--thumb-up-outline-rounded"></i>
+			{/if}
+		</div>
 		{#if likes}
 			<div class="ml-2 text-sm">{likes}</div>
 		{/if}
 	</button>
 
 	<button
-		class="flex items-center justify-center p-1 px-2 text-lg hover:bg-zinc-600"
+		class="flex items-center justify-center rounded-r-md p-1 px-2 text-lg hover:bg-zinc-600"
 		aria-label="dislike-button"
 		onclick={() => reactToPost('dislike')}
 	>
-		{#if userReaction === 'dislike'}
-			<i class="material-symbols--thumb-down-rounded"></i>
-		{:else}
-			<i class="material-symbols--thumb-down-outline-rounded"></i>
-		{/if}
+		<div class="flex items-center justify-center text-base">
+			{#if userReaction === 'dislike'}
+				<i class="material-symbols--thumb-down-rounded"></i>
+			{:else}
+				<i class="material-symbols--thumb-down-outline-rounded"></i>
+			{/if}
+		</div>
 		{#if dislikes}
 			<div class="ml-2 text-sm">{dislikes}</div>
 		{/if}
@@ -72,7 +76,7 @@
 
 	{#if !user}
 		<div class="absolute left-0 top-full hidden group-hover:block">
-			<div class=" text-nowrap bg-zinc-600 px-2 py-1 text-sm">Login required</div>
+			<div class="text-nowrap rounded-md bg-zinc-700 px-2 py-1 text-xs">Login required</div>
 		</div>
 	{/if}
 </div>

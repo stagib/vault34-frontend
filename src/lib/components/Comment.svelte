@@ -35,19 +35,23 @@
 </script>
 
 <div class="mb-6">
-	<div class="flex items-center gap-1 pl-1">
-		<a class="text-sm font-semibold" href={`/user/${comment.user.username}`}
-			>{comment.user.username}</a
-		>
-		<div class="text-xs text-zinc-300">{comment.time_since}</div>
+	<div class="flex">
+		<div class="flex w-full items-center gap-1 pl-1">
+			<a class="text-sm font-semibold" href={`/user/${comment.user.username}`}
+				>{comment.user.username}</a
+			>
+			<div class="text-xs text-zinc-300">{comment.time_since}</div>
+		</div>
+		<MoreButtonComment {user} {comment} />
 	</div>
-	<div class="mb-3 break-words pl-1 text-sm">{comment.content}</div>
+	<div class="mb-3 mr-6 break-words pl-1 text-sm">{comment.content}</div>
 
-	<div class="flex gap-1 pl-1">
-		<div class="text group relative flex bg-zinc-700">
+	<div class="group relative flex w-fit">
+		<div class="mr-1 flex items-center text-zinc-300">
 			<button
-				class="flex items-center justify-center border-r border-zinc-600 p-1 px-2 text-base hover:bg-zinc-600"
+				class="flex items-center justify-center rounded-full p-1 text-base hover:bg-zinc-700"
 				aria-label="like-button"
+				disabled={!user}
 				onclick={() => reactToComment('like')}
 			>
 				{#if userReaction === 'like'}
@@ -55,14 +59,17 @@
 				{:else}
 					<i class="material-symbols--thumb-up-outline-rounded"></i>
 				{/if}
-				{#if likes}
-					<div class="ml-2 text-xs">{likes}</div>
-				{/if}
 			</button>
+			{#if likes}
+				<div class="text-xs">{likes}</div>
+			{/if}
+		</div>
 
+		<div class="flex items-center text-zinc-300">
 			<button
-				class="flex items-center justify-center p-1 px-2 text-base hover:bg-zinc-600"
+				class="flex items-center justify-center rounded-full p-1 text-base hover:bg-zinc-700"
 				aria-label="dislike-button"
+				disabled={!user}
 				onclick={() => reactToComment('dislike')}
 			>
 				{#if userReaction === 'dislike'}
@@ -70,19 +77,18 @@
 				{:else}
 					<i class="material-symbols--thumb-down-outline-rounded"></i>
 				{/if}
-				{#if dislikes}
-					<div class="ml-2 text-xs">{dislikes}</div>
-				{/if}
 			</button>
 
-			{#if !user}
-				<div class="absolute left-0 top-full hidden group-hover:block">
-					<div class=" text-nowrap bg-zinc-600 px-2 py-1 text-sm">Login required</div>
-				</div>
+			{#if dislikes}
+				<div class="text-xs">{dislikes}</div>
 			{/if}
 		</div>
 
-		<MoreButtonComment {user} {comment} />
+		{#if !user}
+			<div class="absolute left-0 top-full hidden group-hover:block">
+				<div class="text-nowrap rounded-md bg-zinc-700 px-2 py-1 text-xs">Login required</div>
+			</div>
+		{/if}
 	</div>
 </div>
 

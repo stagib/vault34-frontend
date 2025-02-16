@@ -63,7 +63,7 @@
 </script>
 
 <div
-	class="relative ml-0 flex max-h-96 w-full flex-col overflow-hidden border border-zinc-600 bg-zinc-800 xl:ml-4 xl:max-h-screen xl:max-w-xs"
+	class="relative flex max-h-96 w-full flex-col overflow-hidden rounded-b-md bg-zinc-800 lg:max-h-screen lg:max-w-72 lg:rounded-l-none lg:rounded-r-md xl:max-w-xs"
 >
 	<div class="absolute top-0 w-full">
 		<div class="flex items-center gap-2 border-b border-zinc-600 bg-zinc-800 px-4 py-2">
@@ -72,7 +72,7 @@
 		</div>
 	</div>
 
-	<div class="my-12 h-full overflow-auto p-2 px-3">
+	<div class="mt-12 h-full overflow-auto p-2 px-3 {user ? 'mb-12' : ''}">
 		{#each comments as comment}
 			<Comment {comment} {postId} {user} />
 		{/each}

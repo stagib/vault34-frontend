@@ -45,16 +45,14 @@
 	}
 </script>
 
-<div class="fixed top-0 z-50 w-full bg-zinc-900 px-4">
-	<div
-		class="z-50 flex w-full items-center justify-between border border-t-0 border-zinc-600 bg-zinc-800 py-1"
-	>
+<div class="fixed top-0 z-50 w-full bg-zinc-950 px-2 sm:px-4">
+	<div class="z-50 flex w-full items-center justify-between rounded-b-md bg-zinc-800 py-1">
 		<div class="flex text-sm">
-			<a class="bg-zinc-800 px-4 py-1 hover:bg-zinc-700" href="/">Vault34</a>
-			<a class="bg-zinc-800 px-4 py-1 hover:bg-zinc-700" href="/create">Create</a>
+			<a class="bg-zinc-800 px-4 py-1" href="/">Vault34</a>
+			<a class="bg-zinc-800 px-4 py-1" href="/create">Create</a>
 			<div class="relative mx-4" use:clickOutside={() => (showResults = false)}>
 				<TextInput
-					className={'w-80 bg-zinc-800 px-2 py-1 outline-none border border-zinc-600'}
+					className={'w-80 bg-zinc-800 px-2 py-1 rounded-md outline-none border border-zinc-700'}
 					placeholder={'Search'}
 					name={'Query'}
 					minLength={1}
@@ -84,11 +82,9 @@
 		</div>
 
 		{#if user}
-			<a class="bg-zinc-800 px-4 py-1 text-sm hover:bg-zinc-700" href={`/user/${user.username}`}
-				>Profile</a
-			>
+			<a class="bg-zinc-800 px-4 py-1 text-sm" href={`/user/${user.username}`}>Profile</a>
 		{:else}
-			<a class="bg-zinc-800 px-4 py-1 text-sm hover:bg-zinc-700" href="/login">Login</a>
+			<a class="bg-zinc-800 px-4 py-1 text-sm" href="/login">Login</a>
 		{/if}
 	</div>
 </div>

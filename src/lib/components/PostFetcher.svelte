@@ -2,6 +2,7 @@
 	import { API_URL } from '$lib/config';
 	import { onMount } from 'svelte';
 	import Masonry from './Masonry.svelte';
+	import PostCard from './PostCard.svelte';
 
 	let { query } = $props();
 
@@ -56,9 +57,7 @@
 <div class="mx-2 sm:mx-4">
 	<Masonry items={posts}>
 		{#each posts as post}
-			<a class="overflow-hidden rounded-md bg-zinc-800" href={`/post/${post.id}`}>
-				<img class="w-full" src={post.thumbnail} alt="" />
-			</a>
+			<PostCard {post} />
 		{/each}
 	</Masonry>
 </div>

@@ -2,6 +2,7 @@
 	import { API_URL } from '$lib/config';
 	import { onMount } from 'svelte';
 	import Masonry from './Masonry.svelte';
+	import PostCard from './PostCard.svelte';
 
 	let { fetchedUser, user } = $props();
 
@@ -54,9 +55,7 @@
 
 <Masonry items={posts}>
 	{#each posts as post}
-		<a href={`/post/${post.id}`}>
-			<img src={post.thumbnail} alt="" />
-		</a>
+		<PostCard {post} />
 	{/each}
 </Masonry>
 

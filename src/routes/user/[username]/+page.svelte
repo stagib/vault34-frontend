@@ -13,96 +13,102 @@
 </script>
 
 {#if fetchedUser}
-	<div class="flex h-screen flex-col px-2 pb-8 pt-14 sm:px-4 md:flex-row">
-		<div
-			class="flex max-h-full w-full max-w-full flex-col rounded-t-md bg-zinc-800 md:max-w-52 md:rounded-l-md md:rounded-r-none lg:max-w-64"
-		>
-			<div class="flex border-b border-zinc-600 px-4 py-4 pb-8">
-				<div class="flex flex-col">
-					<div class="mb-1 text-base font-semibold">{fetchedUser.username}</div>
-					<div class="text-sm text-zinc-300">Joined {fetchedUser.time_since}</div>
+	<div class="h-screen px-2 pb-8 pt-14 sm:px-4">
+		<div class="flex h-full flex-col rounded-md border border-zinc-700 lg:flex-row">
+			<div
+				class="flex max-h-full w-full max-w-full flex-col rounded-t-md bg-zinc-800 md:max-w-52 md:rounded-l-md md:rounded-r-none lg:max-w-64"
+			>
+				<div class="flex border-b border-zinc-600 px-4 py-4 pb-8">
+					<div class="flex flex-col">
+						<div class="mb-1 text-base font-semibold">{fetchedUser.username}</div>
+						<div class="text-sm text-zinc-300">Joined {fetchedUser.time_since}</div>
+					</div>
+
+					<div class="ml-auto">
+						<MoreButtonUser />
+					</div>
 				</div>
 
-				<div class="ml-auto">
-					<MoreButtonUser />
+				<div class="my-4 flex flex-row justify-between px-4 md:flex-col">
+					<button
+						class="flex justify-between rounded-md px-2 py-1 text-xs md:py-2 md:text-base {view ===
+						'vaults'
+							? 'bg-zinc-700 hover:bg-zinc-700'
+							: 'hover:bg-zinc-600'}"
+						onclick={() => (view = 'vaults')}
+					>
+						<div class="flex items-center gap-4">
+							<div class="hidden items-center justify-center text-lg md:visible md:flex">
+								<i class="material-symbols--shield-outline"></i>
+							</div>
+							<div class="font-semibold">Vaults</div>
+						</div>
+						<div class="hidden text-sm text-zinc-300 md:block">{fetchedUser.vault_count}</div>
+					</button>
+
+					<button
+						class="flex justify-between rounded-md px-2 py-1 text-xs md:py-2 md:text-base {view ===
+						'posts'
+							? 'bg-zinc-700 hover:bg-zinc-700'
+							: 'hover:bg-zinc-600'}"
+						onclick={() => (view = 'posts')}
+					>
+						<div class="flex items-center gap-4">
+							<div class="hidden items-center justify-center text-lg md:visible md:flex">
+								<i class="material-symbols--lab-profile-outline"></i>
+							</div>
+							<div class="font-semibold">Posts</div>
+						</div>
+						<div class="hidden text-sm text-zinc-300 md:block">{fetchedUser.post_count}</div>
+					</button>
+
+					<button
+						class="flex justify-between rounded-md px-2 py-1 text-xs md:py-2 md:text-base {view ===
+						'likedPosts'
+							? 'bg-zinc-700 hover:bg-zinc-700'
+							: 'hover:bg-zinc-600'}"
+						onclick={() => (view = 'likedPosts')}
+					>
+						<div class="flex items-center gap-4">
+							<div class="hidden items-center justify-center text-lg md:visible md:flex">
+								<i class="material-symbols--thumb-up-outline-rounded"></i>
+							</div>
+							<div class="font-semibold">Liked Posts</div>
+						</div>
+						<div class="hidden text-sm text-zinc-300 md:block">{fetchedUser.liked_posts}</div>
+					</button>
+
+					<button
+						class="flex justify-between rounded-md px-2 py-1 text-xs md:py-2 md:text-base {view ===
+						'comments'
+							? 'bg-zinc-700 hover:bg-zinc-700'
+							: 'hover:bg-zinc-600'}"
+						onclick={() => (view = 'comments')}
+					>
+						<div class="flex items-center gap-4">
+							<div class="hidden items-center justify-center text-lg md:visible md:flex">
+								<i class="material-symbols--mode-comment-outline-rounded"></i>
+							</div>
+							<div class="font-semibold">Comments</div>
+						</div>
+						<div class="hidden text-sm text-zinc-300 md:block">{fetchedUser.comment_count}</div>
+					</button>
 				</div>
 			</div>
 
-			<div class="my-4 flex flex-row justify-between px-4 md:flex-col">
-				<button
-					class="flex justify-between rounded-md px-2 py-1 md:py-2 {view === 'vaults'
-						? 'bg-zinc-700 hover:bg-zinc-700'
-						: 'hover:bg-zinc-600'}"
-					onclick={() => (view = 'vaults')}
-				>
-					<div class="flex items-center gap-4">
-						<div class="hidden items-center justify-center text-lg md:visible md:flex">
-							<i class="material-symbols--shield-outline"></i>
-						</div>
-						<div class="font-semibold">Vaults</div>
-					</div>
-					<div class="hidden text-sm text-zinc-300 md:block">{fetchedUser.vault_count}</div>
-				</button>
-
-				<button
-					class="flex justify-between rounded-md px-2 py-1 md:py-2 {view === 'posts'
-						? 'bg-zinc-700 hover:bg-zinc-700'
-						: 'hover:bg-zinc-600'}"
-					onclick={() => (view = 'posts')}
-				>
-					<div class="flex items-center gap-4">
-						<div class="hidden items-center justify-center text-lg md:visible md:flex">
-							<i class="material-symbols--lab-profile-outline"></i>
-						</div>
-						<div class="font-semibold">Posts</div>
-					</div>
-					<div class="hidden text-sm text-zinc-300 md:block">{fetchedUser.post_count}</div>
-				</button>
-
-				<button
-					class="flex justify-between rounded-md px-2 py-1 md:py-2 {view === 'likedPosts'
-						? 'bg-zinc-700 hover:bg-zinc-700'
-						: 'hover:bg-zinc-600'}"
-					onclick={() => (view = 'likedPosts')}
-				>
-					<div class="flex items-center gap-4">
-						<div class="hidden items-center justify-center text-lg md:visible md:flex">
-							<i class="material-symbols--thumb-up-outline-rounded"></i>
-						</div>
-						<div class="font-semibold">Liked Posts</div>
-					</div>
-					<div class="hidden text-sm text-zinc-300 md:block">{fetchedUser.liked_posts}</div>
-				</button>
-
-				<button
-					class="flex justify-between rounded-md px-2 py-1 md:py-2 {view === 'comments'
-						? 'bg-zinc-700 hover:bg-zinc-700'
-						: 'hover:bg-zinc-600'}"
-					onclick={() => (view = 'comments')}
-				>
-					<div class="flex items-center gap-4">
-						<div class="hidden items-center justify-center text-lg md:visible md:flex">
-							<i class="material-symbols--mode-comment-outline-rounded"></i>
-						</div>
-						<div class="font-semibold">Comments</div>
-					</div>
-					<div class="hidden text-sm text-zinc-300 md:block">{fetchedUser.comment_count}</div>
-				</button>
+			<div
+				class="h-full w-full rounded-b-md bg-zinc-900 px-2 py-4 sm:overflow-y-auto sm:px-4 md:max-h-full md:rounded-l-none md:rounded-r-md"
+			>
+				{#if view === 'vaults'}
+					<VaultFetcher {fetchedUser} {user} />
+				{:else if view === 'posts'}
+					<UserPostFetcher {fetchedUser} {user} />
+				{:else if view === 'likedPosts'}
+					<UserLikedPostFetcher {fetchedUser} />
+				{:else if view === 'comments'}
+					<UserCommentFetcher {fetchedUser} {user} />
+				{/if}
 			</div>
-		</div>
-
-		<div
-			class="w-full rounded-b-md bg-zinc-900 px-2 py-4 sm:overflow-y-auto sm:px-4 md:max-h-full md:rounded-l-none md:rounded-r-md"
-		>
-			{#if view === 'vaults'}
-				<VaultFetcher {fetchedUser} {user} />
-			{:else if view === 'posts'}
-				<UserPostFetcher {fetchedUser} {user} />
-			{:else if view === 'likedPosts'}
-				<UserLikedPostFetcher {fetchedUser} />
-			{:else if view === 'comments'}
-				<UserCommentFetcher {fetchedUser} {user} />
-			{/if}
 		</div>
 	</div>
 {/if}

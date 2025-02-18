@@ -17,7 +17,10 @@
 		loading = true;
 
 		try {
-			const response = await fetch(`${API_URL}/users/${username}/comments`);
+			const response = await fetch(`${API_URL}/users/${username}/comments`, {
+				method: 'GET',
+				credentials: 'include'
+			});
 			const data = await response.json();
 
 			if (response.ok) {
@@ -42,8 +45,10 @@
 
 <div class="flex w-full flex-col">
 	{#each comments as comment}
-		<div class="mb-4 w-full max-w-md border border-zinc-600 bg-zinc-800 p-4">
-			<a class="px-1 text-xs" href={`/post/${comment.post.id}`}>Post: {comment.post.id}</a>
+		<div class="mb-4 w-full max-w-md rounded-md border border-zinc-600 bg-zinc-800 px-4 py-1">
+			<a class="px-1 text-xs text-zinc-300" href={`/post/${comment.post.id}`}
+				>Post: {comment.post.id}</a
+			>
 			<Comment {comment} postId={comment.post.id} {user} />
 		</div>
 	{/each}

@@ -38,51 +38,53 @@
 	}
 </script>
 
-<div class="flex gap-4 px-4 pb-10 pt-14">
-	<div class="flex w-full max-w-xs flex-col border border-zinc-600 bg-zinc-800 p-4">
-		<div class="mb-8 text-sm font-semibold">Login</div>
-
-		<TextInput
-			className={'mb-2 w-full bg-zinc-700 px-2 py-1 text-sm outline-none'}
-			placeholder={'Username'}
-			name={'Username'}
-			allowNumbers={true}
-			allowSymbols={true}
-			required={true}
-			bind:this={usernameInput}
-		/>
-
-		<TextInput
-			className={'w-full bg-zinc-700 px-2 py-1 text-sm outline-none'}
-			placeholder={'Password'}
-			name={'Password'}
-			allowNumbers={true}
-			allowSymbols={true}
-			required={true}
-			bind:this={passwordInput}
-		/>
-
-		<div class="mt-2">
-			<button class="bg-zinc-700 px-2 py-1 text-sm hover:bg-zinc-600" onclick={login}
-				>Login
-			</button>
-		</div>
-
-		<div class="mt-20 pb-2">
-			<a class="flex items-center gap-2 text-xs" href="/register">
-				<div class="text-zinc-300">Don't have an account?</div>
-				<div class="">Register here</div>
-			</a>
-		</div>
-	</div>
-
+<div class="flex flex-col items-center gap-4 pb-10 pt-20">
 	{#if error}
 		<div class="flex w-full max-w-xs flex-col">
 			<div
-				class="break-words border border-red-600 bg-red-400 px-4 py-1 text-sm font-semibold text-red-950"
+				class="break-words rounded-md border border-red-600 bg-red-400 px-4 py-1 text-sm font-semibold text-red-950"
 			>
 				{error}
 			</div>
 		</div>
 	{/if}
+
+	<div class="flex w-full max-w-xs flex-col overflow-hidden rounded-md bg-zinc-900">
+		<div class="mb-8 bg-zinc-800 p-4 text-sm font-semibold">Login</div>
+
+		<div class="px-4">
+			<TextInput
+				className={'mb-2 w-full rounded-sm bg-zinc-800 px-2 py-1 text-sm outline-none'}
+				placeholder={'Username'}
+				name={'Username'}
+				allowNumbers={true}
+				allowSymbols={true}
+				required={true}
+				bind:this={usernameInput}
+			/>
+
+			<TextInput
+				className={'w-full rounded-sm bg-zinc-800 px-2 py-1 text-sm outline-none'}
+				placeholder={'Password'}
+				name={'Password'}
+				allowNumbers={true}
+				allowSymbols={true}
+				required={true}
+				bind:this={passwordInput}
+			/>
+		</div>
+
+		<div class="mt-4 px-4">
+			<button class="rounded-sm bg-zinc-700 px-4 py-1 text-sm hover:bg-zinc-600" onclick={login}
+				>Login
+			</button>
+		</div>
+
+		<div class="mt-12 bg-zinc-800 px-4 py-4">
+			<a class="flex items-center gap-2 text-xs" href="/register">
+				<div class="text-zinc-400">Don't have an account?</div>
+				<div class="text-zinc-300">Register here</div>
+			</a>
+		</div>
+	</div>
 </div>

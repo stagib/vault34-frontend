@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation';
 	import FileForm from '$lib/components/FileForm.svelte';
 	import FileInput from '$lib/components/FileInput.svelte';
+	import TagFormInput from '$lib/components/TagFormInput.svelte';
 	import TagInput from '$lib/components/TagInput.svelte';
 	import TagRemove from '$lib/components/TagRemove.svelte';
 	import TextInput from '$lib/components/TextInput.svelte';
@@ -85,7 +86,73 @@
 	}
 </script>
 
-<div class="flex h-screen gap-4 px-4 pb-10 pt-14">
+<div class="flex flex-col items-center pb-10 pt-20">
+	{#if error}
+		<div class="mb-4 flex w-full max-w-md flex-col">
+			<div
+				class="break-words rounded-md border border-red-600 bg-red-400 px-4 py-1 text-sm font-semibold text-red-950"
+			>
+				{error}
+			</div>
+		</div>
+	{/if}
+
+	<div class="w-full max-w-md overflow-hidden rounded-md bg-zinc-900">
+		<div class="mb-4 bg-zinc-800 p-4">
+			<div class="text-lg font-semibold">Create post</div>
+		</div>
+
+		<div class="mb-8 px-4">
+			<div class="mb-1 text-sm font-semibold text-zinc-300">Title</div>
+			<TextInput
+				className={'w-full rounded-sm bg-zinc-800 px-2 py-2 text-sm outline-none resize-none'}
+				rows={1}
+				name="Title"
+				placeholder="Title"
+				resize={true}
+				minLength={0}
+				maxLength={50}
+				allowNumbers={true}
+				allowSymbols={true}
+				bind:this={titleInput}
+			/>
+		</div>
+
+		<div class="mb-8 px-4">
+			<TagFormInput {addTag} />
+
+			{#each tagTypes as type}
+				{#if tags[type] && tags[type].length > 0}
+					<div class="mb-1 mt-2 text-xs font-semibold text-zinc-400">
+						<!-- Capitalize first letter -->
+						{String(type).charAt(0).toUpperCase() + String(type).slice(1)}
+					</div>
+					<div class="mb-4 flex flex-wrap items-center gap-2 rounded-md border border-zinc-600 p-2">
+						{#each tags[type] as tag}
+							<button onclick={() => removeTag(tag)}>
+								<TagRemove {tag} />
+							</button>
+						{/each}
+					</div>
+				{/if}
+			{/each}
+		</div>
+
+		<div class="px-4">
+			<div class="mb-1 text-sm font-semibold text-zinc-300">Files *</div>
+
+			<FileForm bind:this={fileForm} />
+		</div>
+
+		<div class="mt-8 bg-zinc-800 p-4">
+			<button class="rounded-md bg-zinc-700 p-2 px-4 text-sm hover:bg-zinc-600" onclick={createPost}
+				>Create post
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- <div class="flex gap-4 px-4 pb-10 pt-14">
 	<div
 		class="flex max-h-full w-full max-w-sm flex-col overflow-auto border border-zinc-600 bg-zinc-800"
 	>
@@ -160,4 +227,4 @@
 			</div>
 		</div>
 	{/if}
-</div>
+</div> -->

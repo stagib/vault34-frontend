@@ -46,7 +46,7 @@
 {/each}
 
 <button
-	class="mt-4 flex items-center justify-center gap-1 bg-zinc-700 p-1 px-2 text-sm hover:bg-zinc-600"
+	class="mt-4 flex items-center justify-center gap-1 rounded-md bg-zinc-700 p-1 px-2 text-sm hover:bg-zinc-600"
 	onclick={addFile}
 	aria-label="add-file"
 >

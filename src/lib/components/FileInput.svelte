@@ -5,7 +5,11 @@
 </script>
 
 <div class="mb-2">
-	<div class="flex items-center bg-zinc-700 p-2">
+	<div
+		class="flex items-center rounded-t-md bg-zinc-800 px-2 {showPreview
+			? 'rounded-b-none'
+			: 'rounded-b-md'}"
+	>
 		<input
 			class="w-full text-sm text-zinc-200"
 			type="file"
@@ -13,18 +17,20 @@
 			onchange={(e) => handleFileChange(e, file.id)}
 			bind:this={input}
 		/>
-		<button class="flex w-full items-center gap-2 overflow-hidden text-sm" onclick={input.click()}>
-			<div class="bg-zinc-300 px-1 font-medium text-zinc-950 hover:bg-zinc-200">Browse...</div>
+		<button
+			class="flex w-full items-center gap-2 overflow-hidden py-2 text-sm"
+			onclick={() => input.click()}
+		>
 			{#if file.file}
-				<div class="truncate">{file.file.name}</div>
+				<div class="truncate text-sm">{file.file.name}</div>
 			{:else}
-				<div>No file selected.</div>
+				<div class="text-sm text-zinc-300">No file selected.</div>
 			{/if}
 		</button>
 		<div class="flex gap-1">
 			{#if showPreview}
 				<button
-					class="flex items-center justify-center rounded-full bg-zinc-600 p-1 text-sm hover:bg-zinc-500"
+					class="flex items-center justify-center rounded-full bg-zinc-700 p-1 text-sm hover:bg-zinc-600"
 					aria-label="hide"
 					onclick={() => (showPreview = false)}
 				>
@@ -32,7 +38,7 @@
 				</button>
 			{:else}
 				<button
-					class="flex items-center justify-center rounded-full bg-zinc-600 p-1 text-sm hover:bg-zinc-500"
+					class="flex items-center justify-center rounded-full bg-zinc-700 p-1 text-sm hover:bg-zinc-600"
 					aria-label="expand"
 					onclick={() => (showPreview = true)}
 				>
@@ -40,7 +46,7 @@
 				</button>
 			{/if}
 			<button
-				class="flex items-center justify-center rounded-full bg-zinc-600 p-1 text-sm hover:bg-zinc-500"
+				class="flex items-center justify-center rounded-full bg-zinc-700 p-1 text-sm hover:bg-zinc-600"
 				aria-label="remove-file"
 				onclick={() => removeFile(file.id)}
 			>
@@ -51,11 +57,11 @@
 
 	{#if showPreview}
 		{#if file.type === 'image'}
-			<div class="mb-2 border border-zinc-600">
+			<div class="mb-2 rounded-b-md border border-t-0 border-zinc-600">
 				<img src={file.preview} alt="" />
 			</div>
 		{:else if file.type === 'video'}
-			<div class="mb-2 border border-zinc-600">
+			<div class="mb-2 rounded-b-md border border-t-0 border-zinc-600">
 				<video controls loop>
 					<source src={file.preview} />
 					<track kind="captions" />

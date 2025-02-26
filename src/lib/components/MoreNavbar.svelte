@@ -6,12 +6,12 @@
 
 <DropdownMenu>
 	{#snippet button()}
-		<button
+		<div
 			class="flex items-center justify-center rounded-full p-2 text-xl text-zinc-200 hover:bg-zinc-700"
 			aria-label="menu-button"
 		>
 			<i class="material-symbols--menu-rounded"></i>
-		</button>
+		</div>
 	{/snippet}
 
 	{#snippet content()}

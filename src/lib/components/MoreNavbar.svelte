@@ -1,7 +1,20 @@
 <script>
+	import { goto } from '$app/navigation';
+	import { API_URL } from '$lib/config';
 	import DropdownMenu from './DropdownMenu.svelte';
 
 	let { user } = $props();
+
+	async function logout() {
+		const response = await fetch(`${API_URL}/logout`, {
+			method: 'POST',
+			credentials: 'include'
+		});
+
+		if (response.ok) {
+			window.location.reload();
+		}
+	}
 </script>
 
 <DropdownMenu>
@@ -46,14 +59,14 @@
 							<div class="text-start">Settings</div>
 						</div>
 					</a>
-					<a class="rounded-md p-1 px-2 hover:bg-zinc-700" href={`/user/${user.username}`}>
+					<button class="rounded-md p-1 px-2 hover:bg-zinc-700" onclick={logout}>
 						<div class="flex items-center gap-2">
 							<div class="flex items-center justify-center text-lg">
 								<i class="material-symbols--logout-rounded"></i>
 							</div>
 							<div class="text-start">Logout</div>
 						</div>
-					</a>
+					</button>
 				{:else}
 					<a class="rounded-md p-1 px-2 hover:bg-zinc-700" href={`/login`}>
 						<div class="flex items-center gap-2">

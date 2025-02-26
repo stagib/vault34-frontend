@@ -51,14 +51,14 @@
 						</div>
 					</a>
 
-					<a class="rounded-md p-1 px-2 hover:bg-zinc-700" href={`/user/${user.username}`}>
+					<!-- <a class="rounded-md p-1 px-2 hover:bg-zinc-700" href={`/user/${user.username}`}>
 						<div class="flex items-center gap-2">
 							<div class="flex items-center justify-center text-lg">
 								<i class="uil--setting"></i>
 							</div>
 							<div class="text-start">Settings</div>
 						</div>
-					</a>
+					</a> -->
 					<button class="rounded-md p-1 px-2 hover:bg-zinc-700" onclick={logout}>
 						<div class="flex items-center gap-2">
 							<div class="flex items-center justify-center text-lg">
@@ -133,7 +133,7 @@
 		mask-size: 100% 100%;
 	}
 
-	.uil--setting {
+	/* 	.uil--setting {
 		display: inline-block;
 		width: 1em;
 		height: 1em;
@@ -146,7 +146,7 @@
 		-webkit-mask-size: 100% 100%;
 		mask-size: 100% 100%;
 	}
-
+ */
 	.iconamoon--profile-light {
 		display: inline-block;
 		width: 1em;

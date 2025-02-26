@@ -54,13 +54,12 @@
 			></textarea>
 
 			<div class="mt-auto flex items-center justify-center gap-1 p-1">
-				<button
+				<!-- <button
 					class="flex items-center justify-center rounded-full bg-zinc-600 p-2 hover:bg-zinc-500"
 					aria-label="attach-button"
 				>
-					<!--TODO-->
-					<i class="material-symbols--attach-file"></i>
-				</button>
+					<i class="material-symbols--add-link"></i>
+				</button> -->
 				<button
 					class="flex items-center justify-center rounded-full bg-zinc-600 p-2 hover:bg-zinc-500"
 					aria-label="comment-button"
@@ -88,11 +87,11 @@
 		mask-size: 100% 100%;
 	}
 
-	.material-symbols--attach-file {
+	/* 	.material-symbols--add-link {
 		display: inline-block;
 		width: 1em;
 		height: 1em;
-		--svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M18 15.75q0 2.6-1.825 4.425T11.75 22t-4.425-1.825T5.5 15.75V6.5q0-1.875 1.313-3.187T10 2t3.188 1.313T14.5 6.5v8.75q0 1.15-.8 1.95t-1.95.8t-1.95-.8t-.8-1.95V6h2v9.25q0 .325.213.538t.537.212t.538-.213t.212-.537V6.5q-.025-1.05-.737-1.775T10 4t-1.775.725T7.5 6.5v9.25q-.025 1.775 1.225 3.013T11.75 20q1.75 0 2.975-1.237T16 15.75V6h2z'/%3E%3C/svg%3E");
+		--svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M17 20v-3h-3v-2h3v-3h2v3h3v2h-3v3zm-6-3H7q-2.075 0-3.537-1.463T2 12t1.463-3.537T7 7h4v2H7q-1.25 0-2.125.875T4 12t.875 2.125T7 15h4zm-3-4v-2h8v2zm14-1h-2q0-1.25-.875-2.125T17 9h-4V7h4q2.075 0 3.538 1.463T22 12'/%3E%3C/svg%3E");
 		background-color: currentColor;
 		-webkit-mask-image: var(--svg);
 		mask-image: var(--svg);
@@ -100,5 +99,5 @@
 		mask-repeat: no-repeat;
 		-webkit-mask-size: 100% 100%;
 		mask-size: 100% 100%;
-	}
+	} */
 </style>

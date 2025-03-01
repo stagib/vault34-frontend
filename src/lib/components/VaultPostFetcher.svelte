@@ -2,6 +2,7 @@
 	import { API_URL } from '$lib/config';
 	import { onMount } from 'svelte';
 	import Masonry from './Masonry.svelte';
+	import PostCard from './PostCard.svelte';
 
 	let { vaultId } = $props();
 
@@ -40,15 +41,11 @@
 	});
 </script>
 
-<div class="mx-4">
-	<Masonry items={posts}>
-		{#each posts as post}
-			<a href={`/post/${post.id}`}>
-				<img src={post.thumbnail} alt="" />
-			</a>
-		{/each}
-	</Masonry>
-</div>
+<Masonry items={posts}>
+	{#each posts as post}
+		<PostCard {post} />
+	{/each}
+</Masonry>
 
 {#if hasNext}
 	<div bind:this={target}></div>

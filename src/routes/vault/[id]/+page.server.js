@@ -1,5 +1,5 @@
 import { API_URL } from '$lib/config';
-import { redirect } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 
 export async function load({ params, fetch, locals }) {
 	const vaultId = params.id;
@@ -13,9 +13,14 @@ export async function load({ params, fetch, locals }) {
 
 		if (response.ok) {
 			vault = await response.json();
+		} else {
+			throw error(404, { code: 404, message: 'Vault not found' });
 		}
-	} catch (error) {
-		throw error;
+	} catch (e) {
+		if (e instanceof TypeError) {
+			throw error(500, { code: 500, message: 'Network error' });
+		}
+		throw e;
 	}
 
 	if (vault && vault.privacy === 'private') {

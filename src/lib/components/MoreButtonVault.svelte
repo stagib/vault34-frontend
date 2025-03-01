@@ -18,8 +18,8 @@
 	{/snippet}
 
 	{#snippet content()}
-		<div class="absolute left-full top-0 z-20">
-			<div class="flex w-32 flex-col rounded-sm border border-zinc-600 bg-zinc-700 p-1">
+		<div class="absolute right-full top-0 z-20 sm:left-full">
+			<div class="flex w-32 flex-col rounded-md border border-zinc-500 bg-zinc-700 p-1">
 				{#if user}
 					<button
 						class="rounded-sm px-2 py-1 text-start text-sm hover:bg-zinc-600"

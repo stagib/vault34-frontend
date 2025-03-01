@@ -4,7 +4,9 @@
 	let { disableScroll, button, content } = $props();
 	let showDropdown = $state(false);
 
-	function toggleDropdown() {
+	function toggleDropdown(e) {
+		e.stopPropagation();
+		e.preventDefault();
 		showDropdown = !showDropdown;
 		if (disableScroll) {
 			document.body.style.overflow = showDropdown ? 'hidden' : '';

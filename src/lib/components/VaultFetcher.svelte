@@ -46,25 +46,27 @@
 	});
 </script>
 
-{#if user && user.id === fetchedUser.id}
-	<button
-		class="mb-4 flex items-center justify-center gap-1 rounded-md border border-zinc-600 bg-zinc-700 p-2 px-2 text-sm hover:bg-zinc-600"
-		onclick={createModal.openModal}
-	>
-		<i class="material-symbols--add-2-rounded"></i>
-		<div class="text-xs">New vault</div>
-	</button>
-{/if}
-
-<div class="grid w-full grid-cols-2 gap-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+<div class="grid w-full grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5 xl:grid-cols-6">
 	{#each vaults as vault}
 		<Vault {vault} {user} />
 	{/each}
+
+	<!-- 	{#if user && user.id === fetchedUser.id}
+		<div>
+			<button
+				class="mb-4 flex items-center justify-center gap-1 rounded-md bg-zinc-800 p-2 px-2 text-sm hover:bg-zinc-700"
+				onclick={createModal.openModal}
+			>
+				<i class="material-symbols--add-2-rounded"></i>
+				<div class="text-xs">New vault</div>
+			</button>
+		</div>
+	{/if} -->
 </div>
 
 <VaultCreateModal bind:this={createModal} />
 
-<style>
+<!-- <style>
 	.material-symbols--add-2-rounded {
 		display: inline-block;
 		width: 1em;
@@ -78,4 +80,4 @@
 		-webkit-mask-size: 100% 100%;
 		mask-size: 100% 100%;
 	}
-</style>
+</style> -->

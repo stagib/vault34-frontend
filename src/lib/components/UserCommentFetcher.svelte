@@ -43,13 +43,16 @@
 	});
 </script>
 
-<div class="flex w-full flex-col">
+<div class="flex w-full flex-col items-center">
 	{#each comments as comment}
-		<div class="mb-4 w-full max-w-md rounded-md border border-zinc-600 bg-zinc-800 px-4 py-1">
-			<a class="px-1 text-xs text-zinc-300" href={`/post/${comment.post.id}`}
-				>Post: {comment.post.id}</a
-			>
-			<Comment {comment} postId={comment.post.id} {user} />
-		</div>
+		<a class="w-full max-w-md" href={`/post/${comment.post.id}`}>
+			<div class="mb-4 rounded-md border border-zinc-700 bg-zinc-900 px-4 py-2 hover:bg-zinc-800">
+				<Comment {comment} postId={comment.post.id} {user} />
+			</div>
+		</a>
 	{/each}
 </div>
+
+{#if hasNext}
+	<div bind:this={target}></div>
+{/if}

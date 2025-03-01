@@ -1,7 +1,9 @@
 import { API_URL } from '$lib/config';
+import { error } from '@sveltejs/kit';
 
-export async function load({ params, fetch }) {
+export async function load({ params, fetch, url }) {
 	const username = params.username;
+	const view = url.searchParams.get('view');
 	let fetchedUser = null;
 
 	try {
@@ -11,9 +13,14 @@ export async function load({ params, fetch }) {
 
 		if (response.ok) {
 			fetchedUser = await response.json();
+		} else {
+			throw error(404, { code: 404, message: 'User not found' });
 		}
-	} catch (error) {
-		throw error;
+	} catch (e) {
+		if (e instanceof TypeError) {
+			throw error(500, { code: 500, message: 'Network error' });
+		}
+		throw e;
 	}
-	return { fetchedUser };
+	return { fetchedUser, view };
 }

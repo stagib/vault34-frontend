@@ -74,7 +74,9 @@
 
 	<div class="mt-12 h-full overflow-auto p-2 px-3 {user ? 'mb-12' : ''}">
 		{#each comments as comment}
-			<Comment {comment} {postId} {user} />
+			<div class="mb-6">
+				<Comment {comment} {postId} {user} />
+			</div>
 		{/each}
 	</div>
 

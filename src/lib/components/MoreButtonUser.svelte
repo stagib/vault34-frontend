@@ -19,9 +19,9 @@
 
 	{#snippet content()}
 		<div class="absolute left-full top-0 z-20">
-			<div class="flex w-32 flex-col rounded-md border border-zinc-500 bg-zinc-700 p-1">
+			<div class="flex w-32 flex-col rounded-md border border-zinc-700 bg-zinc-800 py-2">
 				<button
-					class="group relative flex items-center rounded-md px-2 py-1 text-start text-sm hover:bg-zinc-600"
+					class="group relative flex items-center px-2 py-1 text-start hover:bg-zinc-700"
 					disabled={!user}
 					onclick={editModal.openModal}
 				>
@@ -39,7 +39,7 @@
 					{/if}
 				</button>
 				<button
-					class="group relative flex items-center rounded-md px-2 py-1 text-start text-sm hover:bg-zinc-600"
+					class="group relative flex items-center px-2 py-1 text-start hover:bg-zinc-700"
 					disabled={!user}
 					onclick={reportModal.openModal}
 				>

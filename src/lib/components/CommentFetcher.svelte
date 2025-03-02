@@ -66,7 +66,7 @@
 	class="relative flex max-h-96 w-full flex-col overflow-hidden rounded-b-md bg-zinc-800 lg:max-h-screen lg:max-w-72 lg:rounded-l-none lg:rounded-r-md xl:max-w-xs"
 >
 	<div class="absolute top-0 w-full">
-		<div class="flex items-center gap-2 border-b border-zinc-600 bg-zinc-800 px-4 py-2">
+		<div class="flex items-center gap-2 bg-zinc-800 px-4 py-2">
 			<div class="text-base font-semibold">Comments</div>
 			<div class="text-base text-zinc-300">{totalComments}</div>
 		</div>
@@ -84,7 +84,7 @@
 		<div bind:this={target}></div>
 	{/if}
 
-	<div class="absolute bottom-0 w-full bg-zinc-800 pt-4">
+	<div class="absolute bottom-0 w-full bg-transparent pt-4">
 		<CommentInput {postId} {user} onComment={updateComments} />
 	</div>
 </div>

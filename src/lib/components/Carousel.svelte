@@ -17,7 +17,7 @@
 	});
 </script>
 
-<div class="relative flex-1 overflow-hidden bg-zinc-900 lg:max-h-screen">
+<div class="relative w-full overflow-hidden bg-zinc-900 lg:max-h-screen">
 	{#if total > 1}
 		<div class="absolute left-2 top-2 rounded-lg bg-zinc-600 px-2 py-1 text-sm">
 			{currentIndex + 1} / {total}

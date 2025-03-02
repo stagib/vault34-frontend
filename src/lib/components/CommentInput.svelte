@@ -44,7 +44,7 @@
 	<div class="p-2">
 		<div class="flex w-full rounded-md border border-zinc-600">
 			<textarea
-				class="max-h-64 w-full resize-none rounded-md bg-zinc-800 p-2 text-sm outline-none"
+				class="max-h-64 w-full resize-none rounded-md bg-transparent p-2 text-sm outline-none"
 				rows="1"
 				placeholder="Add comment"
 				oninput={autoResize}

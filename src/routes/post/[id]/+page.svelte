@@ -12,7 +12,7 @@
 
 {#if post}
 	<div class="mx-2 pb-8 pt-14 sm:mx-4 lg:h-screen">
-		<div class="flex h-full flex-col rounded-md border border-zinc-700 lg:flex-row">
+		<div class="flex h-full flex-col rounded-md lg:flex-row">
 			<PostHeader {user} {post} {tags} />
 			<FileFetcher postId={post.id} />
 			<CommentFetcher postId={post.id} {user} />

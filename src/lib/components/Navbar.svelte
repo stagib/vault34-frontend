@@ -47,11 +47,11 @@
 	}
 </script>
 
-<div class="fixed top-0 z-50 w-full border-b border-zinc-700 bg-zinc-950 px-0 sm:px-4">
-	<div class="z-50 flex w-full items-center justify-between rounded-b-md py-2">
+<div class="fixed top-0 z-50 w-full bg-zinc-950 px-0 sm:px-2">
+	<div class="z-50 flex w-full items-center justify-between rounded-b-md py-1">
 		{#if !showSearchbar}
 			<div class="flex text-sm">
-				<a class="bg-transparent px-4 py-1" href="/">Vault34</a>
+				<a class="bg-transparent py-1 pl-3 pr-4 font-semibold" href="/">Vault34</a>
 				<a class="hidden bg-transparent px-4 py-1 text-zinc-200 sm:block" href="/create">Create</a>
 			</div>
 		{/if}
@@ -61,7 +61,7 @@
 			use:clickOutside={() => (showResults = false)}
 		>
 			<TextInput
-				className={'w-full bg-zinc-900 px-2 py-1 rounded-md outline-none border border-zinc-700'}
+				className={'w-full bg-zinc-900 px-2 py-1 rounded-md outline-none'}
 				placeholder={'Search'}
 				name={'Query'}
 				minLength={1}
